@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Aritmetika Modern</title>
+    <link
+      rel="shortcut icon"
+      href="image/LogoKalkulator.webp"
+      type="image/x-icon"
+    />
+    <!-- Font Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Partikel Background -->
+    <div class="particles"></div>
+
+    <div>
+      <video
+        class="video-bg"
+        src="video/backgroundbintang.mp4"
+        autoplay
+        muted
+        loop
+      ></video>
+    </div>
+
+    <!-- Container Utama -->
+    <div class="main-container">
+      <!-- Kalkulator -->
+      <div class="calculator">
+        <!-- Header Kalkulator -->
+        <div class="calculator-header">
+          <h1 class="title">KALKULATOR ARITMETIKA</h1>
+          <div class="mode-badge">SCIENTIFIC</div>
+        </div>
+
+        <!-- Frame Display Modern -->
+        <div class="display-frame">
+          <div class="display-label">CALCULATOR</div>
+          <div class="display-history" id="displayHistory"></div>
+          <input type="text" id="display" class="display" readonly value="0" />
+          <div class="display-glow"></div>
+        </div>
+
+        <!-- Frame Tombol Aritmetika -->
+        <div class="button-frame">
+          <!-- Baris 1: Clear & Memory -->
+          <div class="button-row">
+            <button class="btn btn-clear" onclick="klikTombol('C')">
+              <span class="btn-text">AC</span>
+            </button>
+            <button class="btn btn-function" onclick="klikTombol('⌫')">
+              <span class="btn-text">⌫</span>
+            </button>
+            <button class="btn btn-function" onclick="klikTombol('(')">
+              (
+            </button>
+            <button class="btn btn-function" onclick="klikTombol(')')">
+              )
+            </button>
+          </div>
+
+          <!-- Baris 2: Pangkat & Akar -->
+          <div class="button-row">
+            <button class="btn btn-function" onclick="klikTombol('x²')">
+              x²
+            </button>
+            <button class="btn btn-function" onclick="klikTombol('x³')">
+              x³
+            </button>
+            <button class="btn btn-function" onclick="klikTombol('xʸ')">
+              xʸ
+            </button>
+            <button class="btn btn-function" onclick="klikTombol('√')">
+              √
+            </button>
+          </div>
+
+          <!-- Baris 3: Trigonometri -->
+          <div class="button-row">
+            <button class="btn btn-function" onclick="klikTombol('sin')">
+              sin
+            </button>
+            <button class="btn btn-function" onclick="klikTombol('cos')">
+              cos
+            </button>
+            <button class="btn btn-function" onclick="klikTombol('tan')">
+              tan
+            </button>
+            <button class="btn btn-operator" onclick="klikTombol('÷')">
+              ÷
+            </button>
+          </div>
+
+          <!-- Baris 4: Logaritma & Eksponensial -->
+          <div class="button-row">
+            <button class="btn btn-function" onclick="klikTombol('log')">
+              log
+            </button>
+            <button class="btn btn-function" onclick="klikTombol('ln')">
+              ln
+            </button>
+            <button class="btn btn-function" onclick="klikTombol('eˣ')">
+              eˣ
+            </button>
+            <button class="btn btn-operator" onclick="klikTombol('×')">
+              ×
+            </button>
+          </div>
+
+          <!-- Baris 5: Angka -->
+          <div class="button-row">
+            <button class="btn btn-number" onclick="klikTombol('7')">7</button>
+            <button class="btn btn-number" onclick="klikTombol('8')">8</button>
+            <button class="btn btn-number" onclick="klikTombol('9')">9</button>
+            <button class="btn btn-operator" onclick="klikTombol('-')">
+              −
+            </button>
+          </div>
+
+          <!-- Baris 6: Angka -->
+          <div class="button-row">
+            <button class="btn btn-number" onclick="klikTombol('4')">4</button>
+            <button class="btn btn-number" onclick="klikTombol('5')">5</button>
+            <button class="btn btn-number" onclick="klikTombol('6')">6</button>
+            <button class="btn btn-operator" onclick="klikTombol('+')">
+              +
+            </button>
+          </div>
+
+          <!-- Baris 7: Angka & Konstanta -->
+          <div class="button-row">
+            <button class="btn btn-number" onclick="klikTombol('1')">1</button>
+            <button class="btn btn-number" onclick="klikTombol('2')">2</button>
+            <button class="btn btn-number" onclick="klikTombol('3')">3</button>
+            <button class="btn btn-function" onclick="klikTombol('π')">
+              π
+            </button>
+          </div>
+
+          <!-- Baris 8: Bawah -->
+          <div class="button-row">
+            <button class="btn btn-function" onclick="klikTombol('%')">
+              %
+            </button>
+            <button class="btn btn-number" onclick="klikTombol('0')">0</button>
+            <button class="btn btn-number" onclick="klikTombol('.')">.</button>
+            <button class="btn btn-equals" onclick="klikTombol('=')">=</button>
+          </div>
+        </div>
+
+        <!-- Mode Indicator -->
+        <div class="mode-indicator">
+          <div class="mode-dot active"></div>
+          <div class="mode-dot"></div>
+          <div class="mode-dot"></div>
+        </div>
+      </div>
+
+      <!-- Panel Informasi (di bawah kalkulator) -->
+      <div class="info-panel">
+        <!-- Tombol Toggle -->
+        <button class="info-toggle-btn" onclick="toggleInfoPanel()">
+          <span>📚 Info Kalkulator Aritmetika</span>
+          <span class="icon">▼</span>
+        </button>
+
+        <!-- Konten Informasi -->
+        <div class="info-content" id="infoContent">
+          <!-- Tab Navigation -->
+          <div class="tab-nav">
+            <button
+              class="tab-btn active"
+              onclick="switchTab('pengertian', this)"
+            >
+              📖 Pengertian
+            </button>
+            <button class="tab-btn" onclick="switchTab('penggunaan', this)">
+              📝 Cara Pakai
+            </button>
+            <button class="tab-btn" onclick="switchTab('soal', this)">
+              ✏️ Soal Latihan
+            </button>
+          </div>
+
+          <!-- Tab 1: Pengertian -->
+          <div class="tab-content active" id="tab-pengertian">
+            <div class="pengertian-section">
+              <h3>
+                <span class="emoji">🧮</span> Apa itu Kalkulator Aritmetika?
+              </h3>
+              <p class="pengertian-text">
+                Kalkulator aritmetika adalah alat komputasi yang dirancang untuk
+                melakukan operasi matematika dasar dan lanjutan. Aritmetika
+                sendiri merupakan cabang matematika yang mempelajari operasi
+                dasar bilangan seperti penjumlahan, pengurangan, perkalian, dan
+                pembagian, serta pengembangannya ke operasi yang lebih kompleks.
+              </p>
+              <p class="pengertian-text">
+                Kalkulator ini dilengkapi dengan berbagai fungsi matematika yang
+                mencakup operasi aritmetika dasar, perpangkatan, akar kuadrat,
+                fungsi trigonometri, logaritma, dan konstanta matematika. Dengan
+                tampilan modern dan fitur lengkap, kalkulator ini dapat membantu
+                menyelesaikan berbagai perhitungan matematika.
+              </p>
+
+              <h3><span class="emoji">⚡</span> Fitur Utama:</h3>
+              <ul class="feature-list">
+                <li><span class="feature-icon">➕</span> Penjumlahan (+)</li>
+                <li><span class="feature-icon">➖</span> Pengurangan (−)</li>
+                <li><span class="feature-icon">✖️</span> Perkalian (×)</li>
+                <li><span class="feature-icon">➗</span> Pembagian (÷)</li>
+                <li><span class="feature-icon">📐</span> Trigonometri</li>
+                <li><span class="feature-icon">📊</span> Logaritma</li>
+                <li><span class="feature-icon">🔢</span> Perpangkatan</li>
+                <li><span class="feature-icon">√</span> Akar Kuadrat</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Tab 2: Cara Penggunaan -->
+          <div class="tab-content" id="tab-penggunaan">
+            <div class="penggunaan-section">
+              <h3><span class="emoji">📝</span> Cara Menggunakan Kalkulator</h3>
+              <ul class="steps-list">
+                <li>
+                  <span class="step-number">1</span>
+                  <div class="step-content">
+                    <strong>Input Angka dan Operator</strong>
+                    Klik tombol angka (0-9) dan operator (+, −, ×, ÷) untuk
+                    membuat ekspresi matematika. Gunakan tanda kurung () untuk
+                    mengelompokkan operasi.
+                  </div>
+                </li>
+                <li>
+                  <span class="step-number">2</span>
+                  <div class="step-content">
+                    <strong>Gunakan Fungsi Khusus</strong>
+                    Untuk operasi lanjutan, gunakan tombol fungsi seperti x²
+                    (pangkat 2), √ (akar), sin/cos/tan (trigonometri), log
+                    (logaritma).
+                  </div>
+                </li>
+                <li>
+                  <span class="step-number">3</span>
+                  <div class="step-content">
+                    <strong>Hitung Hasil</strong>
+                    Tekan tombol = (sama dengan) atau Enter pada keyboard untuk
+                    menghitung hasil. Hasil akan ditampilkan di layar.
+                  </div>
+                </li>
+                <li>
+                  <span class="step-number">4</span>
+                  <div class="step-content">
+                    <strong>Hapus atau Koreksi</strong>
+                    Gunakan AC untuk menghapus semua, atau ⌫ untuk menghapus
+                    satu karakter terakhir jika terjadi kesalahan input.
+                  </div>
+                </li>
+              </ul>
+
+              <h3 style="color: #f39c12; margin-top: 15px; font-size: 14px">
+                <span class="emoji">⌨️</span> Shortcut Keyboard:
+              </h3>
+              <div class="shortcut-grid">
+                <div class="shortcut-item">
+                  <span>Enter</span>
+                  <span class="shortcut-key">=</span>
+                </div>
+                <div class="shortcut-item">
+                  <span>Backspace</span>
+                  <span class="shortcut-key">⌫</span>
+                </div>
+                <div class="shortcut-item">
+                  <span>Escape</span>
+                  <span class="shortcut-key">AC</span>
+                </div>
+                <div class="shortcut-item">
+                  <span>Angka 0-9</span>
+                  <span class="shortcut-key">Input</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 3: Soal Latihan -->
+          <div class="tab-content" id="tab-soal">
+            <div class="soal-section">
+              <h3><span class="emoji">✏️</span> Latihan Soal Aritmetika</h3>
+              <p
+                style="
+                  color: rgba(255, 255, 255, 0.6);
+                  font-size: 12px;
+                  margin-bottom: 15px;
+                "
+              >
+                💡 Klik tombol "Lihat Jawaban" untuk menampilkan jawaban. Coba
+                hitung sendiri dulu ya!
+              </p>
+
+              <!-- Soal 1 -->
+              <div class="soal-card">
+                <div class="soal-header">
+                  <span class="soal-nomor">SOAL 1</span>
+                  <span class="soal-kategori">Operasi Dasar</span>
+                </div>
+                <p class="soal-text">Hitunglah hasil dari operasi berikut:</p>
+                <div class="soal-expression">25 + 37 × 2 − 10</div>
+                <p
+                  style="
+                    font-size: 11px;
+                    color: rgba(255, 255, 255, 0.4);
+                    margin: 5px 0;
+                  "
+                >
+                  Petunjuk: Dahulukan perkalian
+                </p>
+                <div class="soal-answer">
+                  <button
+                    class="answer-btn"
+                    onclick="tampilkanJawaban(this, '89')"
+                  >
+                    👁️ Lihat Jawaban
+                  </button>
+                  <span class="answer-result"></span>
+                </div>
+              </div>
+
+              <!-- Soal 2 -->
+              <div class="soal-card">
+                <div class="soal-header">
+                  <span class="soal-nomor">SOAL 2</span>
+                  <span class="soal-kategori">Perpangkatan</span>
+                </div>
+                <p class="soal-text">Berapakah hasil dari 5 pangkat 3?</p>
+                <div class="soal-expression">5³ = 5 × 5 × 5</div>
+                <p
+                  style="
+                    font-size: 11px;
+                    color: rgba(255, 255, 255, 0.4);
+                    margin: 5px 0;
+                  "
+                >
+                  Petunjuk: Kalikan 5 sebanyak 3 kali
+                </p>
+                <div class="soal-answer">
+                  <button
+                    class="answer-btn"
+                    onclick="tampilkanJawaban(this, '125')"
+                  >
+                    👁️ Lihat Jawaban
+                  </button>
+                  <span class="answer-result"></span>
+                </div>
+              </div>
+
+              <!-- Soal 3 -->
+              <div class="soal-card">
+                <div class="soal-header">
+                  <span class="soal-nomor">SOAL 3</span>
+                  <span class="soal-kategori">Trigonometri</span>
+                </div>
+                <p class="soal-text">Hitunglah nilai sin 30° !</p>
+                <div class="soal-expression">sin(30) = ?</div>
+                <p
+                  style="
+                    font-size: 11px;
+                    color: rgba(255, 255, 255, 0.4);
+                    margin: 5px 0;
+                  "
+                >
+                  Petunjuk: Gunakan tombol sin pada kalkulator
+                </p>
+                <div class="soal-answer">
+                  <button
+                    class="answer-btn"
+                    onclick="tampilkanJawaban(this, '0.5')"
+                  >
+                    👁️ Lihat Jawaban
+                  </button>
+                  <span class="answer-result"></span>
+                </div>
+              </div>
+
+              <!-- Soal 4 -->
+              <div class="soal-card">
+                <div class="soal-header">
+                  <span class="soal-nomor">SOAL 4</span>
+                  <span class="soal-kategori">Logaritma</span>
+                </div>
+                <p class="soal-text">Tentukan nilai log 100 !</p>
+                <div class="soal-expression">log(100) = ?</div>
+                <p
+                  style="
+                    font-size: 11px;
+                    color: rgba(255, 255, 255, 0.4);
+                    margin: 5px 0;
+                  "
+                >
+                  Petunjuk: log 100 = log 10²
+                </p>
+                <div class="soal-answer">
+                  <button
+                    class="answer-btn"
+                    onclick="tampilkanJawaban(this, '2')"
+                  >
+                    👁️ Lihat Jawaban
+                  </button>
+                  <span class="answer-result"></span>
+                </div>
+              </div>
+
+              <!-- Soal 5 -->
+              <div class="soal-card">
+                <div class="soal-header">
+                  <span class="soal-nomor" >SOAL 5</span>
+                  <span class="soal-kategori">Gabungan</span>
+                </div>
+                <p class="soal-text">Hitunglah hasil operasi berikut:</p>
+                <div class="soal-expression">(15 + 5) × 3² − √(144) + 20%</div>
+                <p
+                  style="
+                    font-size: 11px;
+                    color: rgba(255, 255, 255, 0.4);
+                    margin: 5px 0;
+                  "
+                >
+                  Petunjuk: Selesaikan dalam kurung terlebih dahulu
+                </p>
+                <div class="soal-answer">
+                  <button
+                    class="answer-btn"
+                    onclick="tampilkanJawaban(this, '168')"
+                  >
+                    👁️ Lihat Jawaban
+                  </button>
+                  <span class="answer-result"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Members About -->
+      <div class="members-team">
+      <div class="mapel">Project Matematika</div>
+      <div class="members-info">
+        <h3>INFO PROJECT:</h3>
+        <div class="members-name">Nama Anggota: <br> Elfonda Michael, <br> Muhammad Darul Ridwan, <br> Muhammad Ibnu Sona</div> <br>
+        <div class="members-name">Pengembang: Elfonda Michael </div> <br>
+        <div class="members-name">Pemberi Saran: <br> M. D. Ridwan, <br> M. Ibnu Sona</div> <br>
+        <div class="members-name">Mapel: Matematika</div> <br>
+        <div class="members-name">Kode Editor: Visual Studio Code</div> <br>
+        <div class="members-name">Bahasa pemograman: <br> HTML, <br> CSS, <br>Javascript</div> <br>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  </body>
+</html>
