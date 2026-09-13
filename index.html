@@ -3,469 +3,3000 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kalkulator Aritmetika Modern</title>
+    <title>MathTools Enterprise — Multi Calculator & Math Suite</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="" />
+    <script>
+      // Cek apakah user sudah login
+      if (localStorage.getItem("isLoggedIn") !== "true") {
+        window.location.href = "login.html";
+      }
+    </script>
     <link
       rel="shortcut icon"
       href="image/LogoKalkulator.webp"
       type="image/x-icon"
     />
-    <!-- Font Import -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       rel="stylesheet"
     />
-
-    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Partikel Background -->
-    <div class="particles"></div>
-
-    <div>
-      <video
-        class="video-bg"
-        src="video/backgroundbintang.mp4"
-        autoplay
-        muted
-        loop
-      ></video>
-    </div>
-
-    <!-- Container Utama -->
-    <div class="main-container">
-      <!-- Kalkulator -->
-      <div class="calculator">
-        <!-- Header Kalkulator -->
-        <div class="calculator-header">
-          <h1 class="title">KALKULATOR ARITMETIKA</h1>
-          <div class="mode-badge">SCIENTIFIC</div>
-        </div>
-
-        <!-- Frame Display Modern -->
-        <div class="display-frame">
-          <div class="display-label">CALCULATOR</div>
-          <div class="display-history" id="displayHistory"></div>
-          <input type="text" id="display" class="display" readonly value="0" />
-          <div class="display-glow"></div>
-        </div>
-
-        <!-- Frame Tombol Aritmetika -->
-        <div class="button-frame">
-          <!-- Baris 1: Clear & Memory -->
-          <div class="button-row">
-            <button class="btn btn-clear" onclick="klikTombol('C')">
-              <span class="btn-text">AC</span>
-            </button>
-            <button class="btn btn-function" onclick="klikTombol('⌫')">
-              <span class="btn-text">⌫</span>
-            </button>
-            <button class="btn btn-function" onclick="klikTombol('(')">
-              (
-            </button>
-            <button class="btn btn-function" onclick="klikTombol(')')">
-              )
-            </button>
-          </div>
-
-          <!-- Baris 2: Pangkat & Akar -->
-          <div class="button-row">
-            <button class="btn btn-function" onclick="klikTombol('x²')">
-              x²
-            </button>
-            <button class="btn btn-function" onclick="klikTombol('x³')">
-              x³
-            </button>
-            <button class="btn btn-function" onclick="klikTombol('xʸ')">
-              xʸ
-            </button>
-            <button class="btn btn-function" onclick="klikTombol('√')">
-              √
-            </button>
-          </div>
-
-          <!-- Baris 3: Trigonometri -->
-          <div class="button-row">
-            <button class="btn btn-function" onclick="klikTombol('sin')">
-              sin
-            </button>
-            <button class="btn btn-function" onclick="klikTombol('cos')">
-              cos
-            </button>
-            <button class="btn btn-function" onclick="klikTombol('tan')">
-              tan
-            </button>
-            <button class="btn btn-operator" onclick="klikTombol('÷')">
-              ÷
-            </button>
-          </div>
-
-          <!-- Baris 4: Logaritma & Eksponensial -->
-          <div class="button-row">
-            <button class="btn btn-function" onclick="klikTombol('log')">
-              log
-            </button>
-            <button class="btn btn-function" onclick="klikTombol('ln')">
-              ln
-            </button>
-            <button class="btn btn-function" onclick="klikTombol('eˣ')">
-              eˣ
-            </button>
-            <button class="btn btn-operator" onclick="klikTombol('×')">
-              ×
-            </button>
-          </div>
-
-          <!-- Baris 5: Angka -->
-          <div class="button-row">
-            <button class="btn btn-number" onclick="klikTombol('7')">7</button>
-            <button class="btn btn-number" onclick="klikTombol('8')">8</button>
-            <button class="btn btn-number" onclick="klikTombol('9')">9</button>
-            <button class="btn btn-operator" onclick="klikTombol('-')">
-              −
-            </button>
-          </div>
-
-          <!-- Baris 6: Angka -->
-          <div class="button-row">
-            <button class="btn btn-number" onclick="klikTombol('4')">4</button>
-            <button class="btn btn-number" onclick="klikTombol('5')">5</button>
-            <button class="btn btn-number" onclick="klikTombol('6')">6</button>
-            <button class="btn btn-operator" onclick="klikTombol('+')">
-              +
-            </button>
-          </div>
-
-          <!-- Baris 7: Angka & Konstanta -->
-          <div class="button-row">
-            <button class="btn btn-number" onclick="klikTombol('1')">1</button>
-            <button class="btn btn-number" onclick="klikTombol('2')">2</button>
-            <button class="btn btn-number" onclick="klikTombol('3')">3</button>
-            <button class="btn btn-function" onclick="klikTombol('π')">
-              π
-            </button>
-          </div>
-
-          <!-- Baris 8: Bawah -->
-          <div class="button-row">
-            <button class="btn btn-function" onclick="klikTombol('%')">
-              %
-            </button>
-            <button class="btn btn-number" onclick="klikTombol('0')">0</button>
-            <button class="btn btn-number" onclick="klikTombol('.')">.</button>
-            <button class="btn btn-equals" onclick="klikTombol('=')">=</button>
-          </div>
-        </div>
-
-        <!-- Mode Indicator -->
-        <div class="mode-indicator">
-          <div class="mode-dot active"></div>
-          <div class="mode-dot"></div>
-          <div class="mode-dot"></div>
-        </div>
+    <!-- ============================
+         TOPBAR
+    ============================= -->
+    <header class="topbar" id="topbar">
+      <button class="toggle-btn" id="toggleBtn" title="Toggle Sidebar">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="topbar-brand">
+        <i class="fas fa-calculator"></i>
+        <span>MathTools Enterprise</span>
       </div>
+    </header>
 
-      <!-- Panel Informasi (di bawah kalkulator) -->
-      <div class="info-panel">
-        <!-- Tombol Toggle -->
-        <button class="info-toggle-btn" onclick="toggleInfoPanel()">
-          <span>📚 Info Kalkulator Aritmetika</span>
-          <span class="icon">▼</span>
+    <!-- ============================
+         SIDEBAR
+    ============================= -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <div class="brand-logo">
+            <i class="fas fa-calculator"></i>
+          </div>
+          <div class="brand-text">
+            <h2>MathTools</h2>
+            <span>Enterprise Suite</span>
+          </div>
+        </div>
+        <button class="collapse-btn" id="collapseBtn" title="Tutup Sidebar">
+          <i class="fas fa-chevron-left"></i>
         </button>
+      </div>
 
-        <!-- Konten Informasi -->
-        <div class="info-content" id="infoContent">
-          <!-- Tab Navigation -->
-          <div class="tab-nav">
-            <button
-              class="tab-btn active"
-              onclick="switchTab('pengertian', this)"
-            >
-              📖 Pengertian
-            </button>
-            <button class="tab-btn" onclick="switchTab('penggunaan', this)">
-              📝 Cara Pakai
-            </button>
-            <button class="tab-btn" onclick="switchTab('soal', this)">
-              ✏️ Soal Latihan
-            </button>
-          </div>
-
-          <!-- Tab 1: Pengertian -->
-          <div class="tab-content active" id="tab-pengertian">
-            <div class="pengertian-section">
-              <h3>
-                <span class="emoji">🧮</span> Apa itu Kalkulator Aritmetika?
-              </h3>
-              <p class="pengertian-text">
-                Kalkulator aritmetika adalah alat komputasi yang dirancang untuk
-                melakukan operasi matematika dasar dan lanjutan. Aritmetika
-                sendiri merupakan cabang matematika yang mempelajari operasi
-                dasar bilangan seperti penjumlahan, pengurangan, perkalian, dan
-                pembagian, serta pengembangannya ke operasi yang lebih kompleks.
-              </p>
-              <p class="pengertian-text">
-                Kalkulator ini dilengkapi dengan berbagai fungsi matematika yang
-                mencakup operasi aritmetika dasar, perpangkatan, akar kuadrat,
-                fungsi trigonometri, logaritma, dan konstanta matematika. Dengan
-                tampilan modern dan fitur lengkap, kalkulator ini dapat membantu
-                menyelesaikan berbagai perhitungan matematika.
-              </p>
-
-              <h3><span class="emoji">⚡</span> Fitur Utama:</h3>
-              <ul class="feature-list">
-                <li><span class="feature-icon">➕</span> Penjumlahan (+)</li>
-                <li><span class="feature-icon">➖</span> Pengurangan (−)</li>
-                <li><span class="feature-icon">✖️</span> Perkalian (×)</li>
-                <li><span class="feature-icon">➗</span> Pembagian (÷)</li>
-                <li><span class="feature-icon">📐</span> Trigonometri</li>
-                <li><span class="feature-icon">📊</span> Logaritma</li>
-                <li><span class="feature-icon">🔢</span> Perpangkatan</li>
-                <li><span class="feature-icon">√</span> Akar Kuadrat</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Tab 2: Cara Penggunaan -->
-          <div class="tab-content" id="tab-penggunaan">
-            <div class="penggunaan-section">
-              <h3><span class="emoji">📝</span> Cara Menggunakan Kalkulator</h3>
-              <ul class="steps-list">
-                <li>
-                  <span class="step-number">1</span>
-                  <div class="step-content">
-                    <strong>Input Angka dan Operator</strong>
-                    Klik tombol angka (0-9) dan operator (+, −, ×, ÷) untuk
-                    membuat ekspresi matematika. Gunakan tanda kurung () untuk
-                    mengelompokkan operasi.
-                  </div>
-                </li>
-                <li>
-                  <span class="step-number">2</span>
-                  <div class="step-content">
-                    <strong>Gunakan Fungsi Khusus</strong>
-                    Untuk operasi lanjutan, gunakan tombol fungsi seperti x²
-                    (pangkat 2), √ (akar), sin/cos/tan (trigonometri), log
-                    (logaritma).
-                  </div>
-                </li>
-                <li>
-                  <span class="step-number">3</span>
-                  <div class="step-content">
-                    <strong>Hitung Hasil</strong>
-                    Tekan tombol = (sama dengan) atau Enter pada keyboard untuk
-                    menghitung hasil. Hasil akan ditampilkan di layar.
-                  </div>
-                </li>
-                <li>
-                  <span class="step-number">4</span>
-                  <div class="step-content">
-                    <strong>Hapus atau Koreksi</strong>
-                    Gunakan AC untuk menghapus semua, atau ⌫ untuk menghapus
-                    satu karakter terakhir jika terjadi kesalahan input.
-                  </div>
-                </li>
-              </ul>
-
-              <h3 style="color: #f39c12; margin-top: 15px; font-size: 14px">
-                <span class="emoji">⌨️</span> Shortcut Keyboard:
-              </h3>
-              <div class="shortcut-grid">
-                <div class="shortcut-item">
-                  <span>Enter</span>
-                  <span class="shortcut-key">=</span>
-                </div>
-                <div class="shortcut-item">
-                  <span>Backspace</span>
-                  <span class="shortcut-key">⌫</span>
-                </div>
-                <div class="shortcut-item">
-                  <span>Escape</span>
-                  <span class="shortcut-key">AC</span>
-                </div>
-                <div class="shortcut-item">
-                  <span>Angka 0-9</span>
-                  <span class="shortcut-key">Input</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tab 3: Soal Latihan -->
-          <div class="tab-content" id="tab-soal">
-            <div class="soal-section">
-              <h3><span class="emoji">✏️</span> Latihan Soal Aritmetika</h3>
-              <p
-                style="
-                  color: rgba(255, 255, 255, 0.6);
-                  font-size: 12px;
-                  margin-bottom: 15px;
-                "
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <span class="nav-label">Kalkulator</span>
+          <ul>
+            <li>
+              <a
+                href="#calculator"
+                class="nav-link active"
+                data-section="calculator"
+                data-tooltip="Kalkulator Biasa"
               >
-                💡 Klik tombol "Lihat Jawaban" untuk menampilkan jawaban. Coba
-                hitung sendiri dulu ya!
-              </p>
+                <i class="fas fa-calculator"></i>
+                <span class="nav-text">Kalkulator Biasa</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#barisanAritmetika"
+                class="nav-link"
+                data-section="barisanAritmetika"
+                data-tooltip="Barisan Aritmetika"
+              >
+                <i class="fas fa-square-root-variable"></i>
+                <span class="nav-text">Barisan Aritmetika</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#barisanGeometri"
+                class="nav-link"
+                data-section="barisanGeometri"
+                data-tooltip="Barisan Geometri"
+              >
+                <i class="fas fa-shapes"></i>
+                <span class="nav-text">Barisan Geometri</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#deretAritmetika"
+                class="nav-link"
+                data-section="deretAritmetika"
+                data-tooltip="Deret Aritmetika"
+              >
+                <i class="fas fa-chart-simple"></i>
+                <span class="nav-text">Deret Aritmetika</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#deretGeometri"
+                class="nav-link"
+                data-section="deretGeometri"
+                data-tooltip="Deret Geometri"
+              >
+                <i class="fas fa-wave-square"></i>
+                <span class="nav-text">Deret Geometri</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#gtt"
+                class="nav-link"
+                data-section="gtt"
+                data-tooltip="Deret Geometri Tak Terhingga"
+              >
+                <i class="fas fa-infinity"></i>
+                <span class="nav-text">Deret Geometri Tak Terhingga</span>
+              </a>
+            </li>
+          </ul>
+        </div>
 
-              <!-- Soal 1 -->
-              <div class="soal-card">
-                <div class="soal-header">
-                  <span class="soal-nomor">SOAL 1</span>
-                  <span class="soal-kategori">Operasi Dasar</span>
-                </div>
-                <p class="soal-text">Hitunglah hasil dari operasi berikut:</p>
-                <div class="soal-expression">25 + 37 × 2 − 10</div>
-                <p
-                  style="
-                    font-size: 11px;
-                    color: rgba(255, 255, 255, 0.4);
-                    margin: 5px 0;
-                  "
+        <div class="nav-section">
+          <span class="nav-label">Soal Latihan</span>
+          <ul>
+            <li>
+              <a
+                href="#arithmetic"
+                class="nav-link"
+                data-section="arithmetic"
+                data-tooltip="Soal Barisan Aritmetika"
+              >
+                <i class="fas fa-tasks"></i>
+                <span class="nav-text">Soal Barisan & Deret Aritmetika</span>
+              </a>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a
+                href="#barisanGeometriSoal"
+                class="nav-link"
+                data-section="barisanGeometriSoal"
+                data-tooltip="Soal Barisan Geometri"
+              >
+                <i class="fas fa-tasks"></i>
+                <span class="nav-text">Soal Barisan & Deret Geometri</span>
+              </a>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a
+                href="#deretgeometritakterhinga"
+                class="nav-link"
+                data-section="deretgeometritakterhinga"
+                data-tooltip="Soal Barisan Geometri"
+              >
+                <i class="fas fa-tasks"></i>
+                <span class="nav-text">Soal Deret Geometri Tak Terhinga</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <span class="nav-label">INFO</span>
+          <ul>
+            <li>
+              <a
+                href="#about"
+                class="nav-link"
+                data-section="about"
+                data-tooltip="About This Project"
+              >
+                <i class="fas fa-info-circle"></i>
+                <span class="nav-text">Tentang Project ini</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a
+          href="#account"
+          class="user-info nav-link"
+          data-section="account"
+          data-tooltip="Info Akun"
+        >
+          <div class="user-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="user-detail">
+            <strong id="userNameDisplay">Guest User</strong>
+            <span id="userEmailDisplay">Free Plan</span>
+          </div>
+        </a>
+        <p class="copyright">@ 2026 MathTools v1.0.4</p>
+      </div>
+    </aside>
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- ============================
+         MAIN CONTENT
+    ============================= -->
+    <main class="main-content">
+      <!-- ====== SECTION 1: KALKULATOR BIASA ====== -->
+      <section id="calculator" class="section active">
+        <div class="container">
+          <h1><i class="fas fa-calculator"></i> Kalkulator Biasa</h1>
+          <p class="page-subtitle">
+            Operasi aritmetika dasar: tambah, kurang, kali, bagi, dan persen.
+          </p>
+
+          <div class="calculator">
+            <div class="calculator-display">
+              <input type="text" id="display" readonly value="0" />
+            </div>
+            <div class="calculator-buttons">
+              <button class="btn-clear" onclick="clearDisplay()">C</button>
+              <button class="btn-operator" onclick="deleteLast()">⌫</button>
+              <button class="btn-operator" onclick="appendToDisplay('%')">
+                %
+              </button>
+              <button class="btn-operator" onclick="appendToDisplay('/')">
+                ÷
+              </button>
+
+              <button onclick="appendToDisplay('7')">7</button>
+              <button onclick="appendToDisplay('8')">8</button>
+              <button onclick="appendToDisplay('9')">9</button>
+              <button class="btn-operator" onclick="appendToDisplay('*')">
+                ×
+              </button>
+
+              <button onclick="appendToDisplay('4')">4</button>
+              <button onclick="appendToDisplay('5')">5</button>
+              <button onclick="appendToDisplay('6')">6</button>
+              <button class="btn-operator" onclick="appendToDisplay('-')">
+                −
+              </button>
+
+              <button onclick="appendToDisplay('1')">1</button>
+              <button onclick="appendToDisplay('2')">2</button>
+              <button onclick="appendToDisplay('3')">3</button>
+              <button class="btn-operator" onclick="appendToDisplay('+')">
+                +
+              </button>
+
+              <button onclick="appendToDisplay('0')" class="btn-zero">0</button>
+              <button onclick="appendToDisplay('.')">.</button>
+              <button class="btn-equals" onclick="calculate()">=</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 2: BARISAN ARITMETIKA ====== -->
+      <section id="barisanAritmetika" class="section">
+        <div class="container">
+          <h1>
+            <i class="fas fa-square-root-variable"></i> Barisan Aritmetika
+          </h1>
+          <p class="page-subtitle">
+            Hitung suku ke-n dan tampilkan deret barisan aritmetika.
+          </p>
+
+          <div class="calc-container">
+            <div class="calc-info">
+              <div class="formula-tag">
+                <i class="fas fa-square-root-variable"></i>
+                <span>Un = a + (n − 1) × b</span>
+              </div>
+            </div>
+
+            <div class="input-row">
+              <div class="input-group">
+                <label>Suku Pertama (a)</label>
+                <input type="number" id="baA" placeholder="Contoh: 5" />
+              </div>
+              <div class="input-group">
+                <label>Beda (b)</label>
+                <input type="number" id="baB" placeholder="Contoh: 3" />
+              </div>
+              <div class="input-group">
+                <label>Suku ke-n (n)</label>
+                <input type="number" id="baN" placeholder="Contoh: 10" />
+              </div>
+            </div>
+
+            <div class="button-group">
+              <button onclick="hitungBarisanAritmetika()">
+                <i class="fas fa-calculator"></i> Hitung
+              </button>
+              <button onclick="resetBarisanAritmetika()" class="btn-secondary">
+                <i class="fas fa-rotate-left"></i> Reset
+              </button>
+            </div>
+
+            <div class="result" id="resultBarisanAritmetika"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 3: BARISAN GEOMETRI ====== -->
+      <section id="barisanGeometri" class="section">
+        <div class="container">
+          <h1><i class="fas fa-shapes"></i> Barisan Geometri</h1>
+          <p class="page-subtitle">Hitung suku ke-n dari barisan geometri.</p>
+
+          <div class="calc-container">
+            <div class="calc-info">
+              <div class="formula-tag">
+                <i class="fas fa-square-root-variable"></i>
+                <span>Un = a × r<sup>n−1</sup></span>
+              </div>
+            </div>
+
+            <div class="input-row">
+              <div class="input-group">
+                <label>Suku Pertama (a)</label>
+                <input type="number" id="bgA" placeholder="Contoh: 2" />
+              </div>
+              <div class="input-group">
+                <label>Rasio (r)</label>
+                <input type="number" id="bgR" placeholder="Contoh: 3" />
+              </div>
+              <div class="input-group">
+                <label>Suku ke-n (n)</label>
+                <input type="number" id="bgN" placeholder="Contoh: 5" />
+              </div>
+            </div>
+
+            <div class="button-group">
+              <button onclick="hitungBarisanGeometri()">
+                <i class="fas fa-calculator"></i> Hitung
+              </button>
+              <button onclick="resetBarisanGeometri()" class="btn-secondary">
+                <i class="fas fa-rotate-left"></i> Reset
+              </button>
+            </div>
+
+            <div class="result" id="resultBarisanGeometri"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 4: DERET ARITMETIKA ====== -->
+      <section id="deretAritmetika" class="section">
+        <div class="container">
+          <h1><i class="fas fa-chart-simple"></i> Deret Aritmetika</h1>
+          <p class="page-subtitle">
+            Hitung jumlah n suku pertama deret aritmetika.
+          </p>
+
+          <div class="calc-container">
+            <div class="calc-info">
+              <div class="formula-tag">
+                <i class="fas fa-square-root-variable"></i>
+                <span>Sn = <sup>n</sup>⁄<sub>2</sub> × (2a + (n − 1) × b)</span>
+              </div>
+            </div>
+
+            <div class="input-row">
+              <div class="input-group">
+                <label>Suku Pertama (a)</label>
+                <input type="number" id="daA" placeholder="Contoh: 5" />
+              </div>
+              <div class="input-group">
+                <label>Beda (b)</label>
+                <input type="number" id="daB" placeholder="Contoh: 3" />
+              </div>
+              <div class="input-group">
+                <label>Banyak Suku (n)</label>
+                <input type="number" id="daN" placeholder="Contoh: 10" />
+              </div>
+            </div>
+
+            <div class="button-group">
+              <button onclick="hitungDeretAritmetika()">
+                <i class="fas fa-calculator"></i> Hitung
+              </button>
+              <button onclick="resetDeretAritmetika()" class="btn-secondary">
+                <i class="fas fa-rotate-left"></i> Reset
+              </button>
+            </div>
+
+            <div class="result" id="resultDeretAritmetika"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 5: DERET GEOMETRI ====== -->
+      <section id="deretGeometri" class="section">
+        <div class="container">
+          <h1><i class="fas fa-wave-square"></i> Deret Geometri</h1>
+          <p class="page-subtitle">
+            Hitung jumlah n suku pertama deret geometri.
+          </p>
+
+          <div class="calc-container">
+            <div class="calc-info">
+              <div class="formula-tag">
+                <i class="fas fa-square-root-variable"></i>
+                <span>Sn = a × (r<sup>n</sup> − 1) / (r − 1), r ≠ 1</span>
+              </div>
+            </div>
+
+            <div class="input-row">
+              <div class="input-group">
+                <label>Suku Pertama (a)</label>
+                <input type="number" id="dgA" placeholder="Contoh: 2" />
+              </div>
+              <div class="input-group">
+                <label>Rasio (r)</label>
+                <input type="number" id="dgR" placeholder="Contoh: 3" />
+              </div>
+              <div class="input-group">
+                <label>Banyak Suku (n)</label>
+                <input type="number" id="dgN" placeholder="Contoh: 5" />
+              </div>
+            </div>
+
+            <div class="button-group">
+              <button onclick="hitungDeretGeometri()">
+                <i class="fas fa-calculator"></i> Hitung
+              </button>
+              <button onclick="resetDeretGeometri()" class="btn-secondary">
+                <i class="fas fa-rotate-left"></i> Reset
+              </button>
+            </div>
+
+            <div class="result" id="resultDeretGeometri"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 6: DERET GEOMETRI TAK TERHINGGA ====== -->
+      <section id="gtt" class="section">
+        <div class="container">
+          <h1><i class="fas fa-infinity"></i> Deret Geometri Tak Terhingga</h1>
+          <p class="page-subtitle">
+            Hitung jumlah deret geometri dengan suku tak terhingga (konvergen).
+          </p>
+
+          <div class="calc-container">
+            <div class="calc-info">
+              <div class="formula-tag">
+                <i class="fas fa-square-root-variable"></i>
+                <span>S∞ = a / (1 − r), dengan |r| &lt; 1</span>
+              </div>
+            </div>
+
+            <div class="input-row">
+              <div class="input-group">
+                <label>Suku Pertama (a)</label>
+                <input type="number" id="gttA" placeholder="Contoh: 4" />
+              </div>
+              <div class="input-group">
+                <label>Rasio (r)</label>
+                <input
+                  type="number"
+                  id="gttR"
+                  placeholder="Contoh: 0.5"
+                  step="0.01"
+                />
+              </div>
+            </div>
+
+            <div class="button-group">
+              <button onclick="hitungGTT()">
+                <i class="fas fa-calculator"></i> Hitung
+              </button>
+              <button onclick="resetGTT()" class="btn-secondary">
+                <i class="fas fa-rotate-left"></i> Reset
+              </button>
+            </div>
+
+            <div class="result" id="resultGTT"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 7: SOAL BARISAN ARITMETIKA ====== -->
+      <section id="arithmetic" class="section">
+        <div class="container">
+          <h1><i class="fas fa-chart-line"></i> Soal Barisan Aritmetika</h1>
+          <p class="page-subtitle">
+            Pilih studi kasus, kerjakan soalnya, lalu cek jawaban Anda.
+          </p>
+
+          <!-- Tab pemilih soal -->
+          <div class="exam-tabs">
+            <button class="exam-tab active" data-exam="exam1">
+              <i class="fas fa-piggy-bank"></i> Tabungan
+            </button>
+            <button class="exam-tab" data-exam="exam2">
+              <i class="fas fa-chair"></i> Kursi Gedung
+            </button>
+            <button class="exam-tab" data-exam="exam3">
+              <i class="fas fa-industry"></i> Produksi Pabrik
+            </button>
+            <button class="exam-tab" data-exam="exam4">
+              <i class="fas fa-money-bill-wave"></i> Gaji Karyawan
+            </button>
+            <button class="exam-tab" data-exam="exam5">
+              <i class="fas fa-seedling"></i> Hasil Panen
+            </button>
+          </div>
+
+          <!-- ====== SOAL 1: TABUNGAN ====== -->
+          <div class="exam-panel active" id="exam1">
+            <div class="exam-card">
+              <div class="exam-header">
+                <span class="exam-badge"
+                  ><i class="fas fa-file-alt"></i> SOAL STUDI KASUS</span
                 >
-                  Petunjuk: Dahulukan perkalian
-                </p>
-                <div class="soal-answer">
-                  <button
-                    class="answer-btn"
-                    onclick="tampilkanJawaban(this, '89')"
+                <h3>Barisan &amp; Deret Aritmetika — Tabungan</h3>
+                <div class="exam-meta">
+                  <span><i class="fas fa-clock"></i> 15 menit</span>
+                  <span><i class="fas fa-star"></i> Sedang</span>
+                  <span
+                    ><i class="fas fa-bookmark"></i> Barisan Aritmetika</span
                   >
-                    👁️ Lihat Jawaban
-                  </button>
-                  <span class="answer-result"></span>
                 </div>
               </div>
 
-              <!-- Soal 2 -->
-              <div class="soal-card">
-                <div class="soal-header">
-                  <span class="soal-nomor">SOAL 2</span>
-                  <span class="soal-kategori">Perpangkatan</span>
-                </div>
-                <p class="soal-text">Berapakah hasil dari 5 pangkat 3?</p>
-                <div class="soal-expression">5³ = 5 × 5 × 5</div>
-                <p
-                  style="
-                    font-size: 11px;
-                    color: rgba(255, 255, 255, 0.4);
-                    margin: 5px 0;
-                  "
-                >
-                  Petunjuk: Kalikan 5 sebanyak 3 kali
+              <div class="exam-instruction">
+                <strong><i class="fas fa-info-circle"></i> Petunjuk:</strong>
+                <p>
+                  Bacalah studi kasus berikut dengan cermat, kemudian jawab
+                  pertanyaan (a), (b), dan (c). Tulis jawaban pada kolom yang
+                  tersedia lalu klik <strong>Cek Jawaban</strong>.
                 </p>
-                <div class="soal-answer">
-                  <button
-                    class="answer-btn"
-                    onclick="tampilkanJawaban(this, '125')"
-                  >
-                    👁️ Lihat Jawaban
-                  </button>
-                  <span class="answer-result"></span>
+              </div>
+
+              <div class="exam-story">
+                <h4><i class="fas fa-newspaper"></i> Studi Kasus</h4>
+                <p>
+                  Seorang siswa bernama Andi menabung di celengan setiap minggu
+                  dengan pola teratur. Pada minggu pertama ia menabung
+                  <strong>Rp5.000</strong>, minggu kedua
+                  <strong>Rp6.000</strong>, minggu ketiga
+                  <strong>Rp7.000</strong>, dan seterusnya dengan penambahan
+                  yang selalu tetap setiap minggunya.
+                </p>
+              </div>
+
+              <div class="exam-data">
+                <h4><i class="fas fa-list-check"></i> Informasi:</h4>
+                <ul>
+                  <li>
+                    Suku pertama (a) = <span class="highlight">Rp5.000</span>
+                  </li>
+                  <li>Beda (b) = <span class="highlight">Rp1.000</span></li>
+                </ul>
+              </div>
+
+              <div class="exam-questions">
+                <h4><i class="fas fa-question-circle"></i> Pertanyaan</h4>
+
+                <div class="question-item" data-answer="14000">
+                  <p class="question-text">
+                    <strong>a)</strong> Berapa besar tabungan Andi pada minggu
+                    ke-10?
+                  </p>
+                  <div class="answer-input">
+                    <span class="input-prefix">Rp</span>
+                    <input
+                      type="number"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                    />
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+
+                <div class="question-item" data-answer="77000">
+                  <p class="question-text">
+                    <strong>b)</strong> Berapa total tabungan Andi selama 7
+                    minggu pertama?
+                  </p>
+                  <div class="answer-input">
+                    <span class="input-prefix">Rp</span>
+                    <input
+                      type="number"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                    />
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+
+                <div class="question-item" data-answer="10">
+                  <p class="question-text">
+                    <strong>c)</strong> Jika Andi ingin tabungannya mencapai
+                    Rp14.000, pada minggu ke berapa hal itu terjadi?
+                  </p>
+                  <div class="answer-input">
+                    <span class="input-prefix">Minggu ke-</span>
+                    <input
+                      type="number"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                    />
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
                 </div>
               </div>
 
-              <!-- Soal 3 -->
-              <div class="soal-card">
-                <div class="soal-header">
-                  <span class="soal-nomor">SOAL 3</span>
-                  <span class="soal-kategori">Trigonometri</span>
+              <button class="toggle-answer" onclick="togglePembahasan(this)">
+                <i class="fas fa-eye"></i> Tampilkan Pembahasan Lengkap
+              </button>
+
+              <div class="answers-content">
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-square-root-variable"></i> Rumus yang
+                    Digunakan:
+                  </h5>
+                  <div class="formula-box">
+                    <p><strong>Un</strong> = a + (n − 1)b</p>
+                    <p>
+                      <strong>Sn</strong> = <sup>n</sup>⁄<sub>2</sub> (2a + (n −
+                      1)b)
+                    </p>
+                  </div>
                 </div>
-                <p class="soal-text">Hitunglah nilai sin 30° !</p>
-                <div class="soal-expression">sin(30) = ?</div>
-                <p
-                  style="
-                    font-size: 11px;
-                    color: rgba(255, 255, 255, 0.4);
-                    margin: 5px 0;
-                  "
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (a): U₁₀</h5>
+                  <div class="solution-step">
+                    <p>U₁₀ = a + (10 − 1)b</p>
+                    <p>U₁₀ = 5.000 + 9 × 1.000</p>
+                    <p>U₁₀ = 5.000 + 9.000</p>
+                    <p class="final-answer"><strong>U₁₀ = Rp14.000</strong></p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (b): S₇</h5>
+                  <div class="solution-step">
+                    <p>
+                      S₇ = <sup>7</sup>⁄<sub>2</sub> × (2 × 5.000 + (7 − 1) ×
+                      1.000)
+                    </p>
+                    <p>S₇ = <sup>7</sup>⁄<sub>2</sub> × (10.000 + 6.000)</p>
+                    <p>S₇ = <sup>7</sup>⁄<sub>2</sub> × 16.000</p>
+                    <p class="final-answer"><strong>S₇ = Rp56.000</strong></p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-check-circle"></i> Jawaban (c): n saat Un =
+                    14.000
+                  </h5>
+                  <div class="solution-step">
+                    <p>Un = a + (n − 1)b</p>
+                    <p>14.000 = 5.000 + (n − 1) × 1.000</p>
+                    <p>9.000 = (n − 1) × 1.000</p>
+                    <p>n − 1 = 9</p>
+                    <p class="final-answer">
+                      <strong>n = 10 (minggu ke-10)</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== SOAL 2: KURSI GEDUNG ====== -->
+          <div class="exam-panel" id="exam2">
+            <div class="exam-card">
+              <div class="exam-header">
+                <span class="exam-badge"
+                  ><i class="fas fa-file-alt"></i> SOAL STUDI KASUS</span
                 >
-                  Petunjuk: Gunakan tombol sin pada kalkulator
-                </p>
-                <div class="soal-answer">
-                  <button
-                    class="answer-btn"
-                    onclick="tampilkanJawaban(this, '0.5')"
+                <h3>Barisan &amp; Deret Aritmetika — Kursi Gedung</h3>
+                <div class="exam-meta">
+                  <span><i class="fas fa-clock"></i> 15 menit</span>
+                  <span><i class="fas fa-star"></i> Sedang</span>
+                  <span
+                    ><i class="fas fa-bookmark"></i> Barisan Aritmetika</span
                   >
-                    👁️ Lihat Jawaban
-                  </button>
-                  <span class="answer-result"></span>
                 </div>
               </div>
 
-              <!-- Soal 4 -->
-              <div class="soal-card">
-                <div class="soal-header">
-                  <span class="soal-nomor">SOAL 4</span>
-                  <span class="soal-kategori">Logaritma</span>
-                </div>
-                <p class="soal-text">Tentukan nilai log 100 !</p>
-                <div class="soal-expression">log(100) = ?</div>
-                <p
-                  style="
-                    font-size: 11px;
-                    color: rgba(255, 255, 255, 0.4);
-                    margin: 5px 0;
-                  "
-                >
-                  Petunjuk: log 100 = log 10²
+              <div class="exam-instruction">
+                <strong><i class="fas fa-info-circle"></i> Petunjuk:</strong>
+                <p>
+                  Bacalah studi kasus berikut dengan cermat, kemudian jawab
+                  pertanyaan (a), (b), dan (c).
                 </p>
-                <div class="soal-answer">
-                  <button
-                    class="answer-btn"
-                    onclick="tampilkanJawaban(this, '2')"
-                  >
-                    👁️ Lihat Jawaban
-                  </button>
-                  <span class="answer-result"></span>
+              </div>
+
+              <div class="exam-story">
+                <h4><i class="fas fa-newspaper"></i> Studi Kasus</h4>
+                <p>
+                  Sebuah gedung pertunjukan memiliki kursi yang disusun
+                  berbaris. Baris pertama berisi <strong>20 kursi</strong>,
+                  baris kedua <strong>24 kursi</strong>, baris ketiga
+                  <strong>28 kursi</strong>, dan seterusnya dengan selisih kursi
+                  antar baris selalu sama. Gedung tersebut memiliki
+                  <strong>12 baris</strong> kursi.
+                </p>
+              </div>
+
+              <div class="exam-data">
+                <h4><i class="fas fa-list-check"></i> Informasi:</h4>
+                <ul>
+                  <li>
+                    Suku pertama (a) = <span class="highlight">20 kursi</span>
+                  </li>
+                  <li>Beda (b) = <span class="highlight">4 kursi</span></li>
+                  <li>
+                    Banyak baris (n) = <span class="highlight">12 baris</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="exam-questions">
+                <h4><i class="fas fa-question-circle"></i> Pertanyaan</h4>
+
+                <div class="question-item" data-answer="64">
+                  <p class="question-text">
+                    <strong>a)</strong> Berapa banyak kursi pada baris ke-12?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="number"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                    />
+                    <span class="input-suffix">kursi</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+
+                <div class="question-item" data-answer="504">
+                  <p class="question-text">
+                    <strong>b)</strong> Berapa total kursi di dalam gedung?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="number"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                    />
+                    <span class="input-suffix">kursi</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+
+                <div class="question-item" data-answer="15">
+                  <p class="question-text">
+                    <strong>c)</strong> Jika kapasitas gedung ingin diperbesar
+                    sehingga baris terakhir berisi 76 kursi, berapa banyak baris
+                    yang dibutuhkan?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="number"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                    />
+                    <span class="input-suffix">baris</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
                 </div>
               </div>
 
-              <!-- Soal 5 -->
-              <div class="soal-card">
-                <div class="soal-header">
-                  <span class="soal-nomor" >SOAL 5</span>
-                  <span class="soal-kategori">Gabungan</span>
+              <button class="toggle-answer" onclick="togglePembahasan(this)">
+                <i class="fas fa-eye"></i> Tampilkan Pembahasan Lengkap
+              </button>
+
+              <div class="answers-content">
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-square-root-variable"></i> Rumus yang
+                    Digunakan:
+                  </h5>
+                  <div class="formula-box">
+                    <p><strong>Un</strong> = a + (n − 1)b</p>
+                    <p>
+                      <strong>Sn</strong> = <sup>n</sup>⁄<sub>2</sub> (2a + (n −
+                      1)b)
+                    </p>
+                  </div>
                 </div>
-                <p class="soal-text">Hitunglah hasil operasi berikut:</p>
-                <div class="soal-expression">(15 + 5) × 3² − √(144) + 20%</div>
-                <p
-                  style="
-                    font-size: 11px;
-                    color: rgba(255, 255, 255, 0.4);
-                    margin: 5px 0;
-                  "
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (a): U₁₂</h5>
+                  <div class="solution-step">
+                    <p>U₁₂ = 20 + (12 − 1) × 4</p>
+                    <p>U₁₂ = 20 + 11 × 4</p>
+                    <p>U₁₂ = 20 + 44</p>
+                    <p class="final-answer"><strong>U₁₂ = 64 kursi</strong></p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (b): S₁₂</h5>
+                  <div class="solution-step">
+                    <p>
+                      S₁₂ = <sup>12</sup>⁄<sub>2</sub> × (2 × 20 + (12 − 1) × 4)
+                    </p>
+                    <p>S₁₂ = 6 × (40 + 44)</p>
+                    <p>S₁₂ = 6 × 84</p>
+                    <p class="final-answer"><strong>S₁₂ = 504 kursi</strong></p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-check-circle"></i> Jawaban (c): n saat Un =
+                    76
+                  </h5>
+                  <div class="solution-step">
+                    <p>Un = a + (n − 1)b</p>
+                    <p>76 = 20 + (n − 1) × 4</p>
+                    <p>56 = (n − 1) × 4</p>
+                    <p>n − 1 = 14</p>
+                    <p class="final-answer"><strong>n = 15 baris</strong></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== SOAL 3: PRODUKSI PABRIK ====== -->
+          <div class="exam-panel" id="exam3">
+            <div class="exam-card">
+              <div class="exam-header">
+                <span class="exam-badge"
+                  ><i class="fas fa-file-alt"></i> SOAL STUDI KASUS</span
                 >
-                  Petunjuk: Selesaikan dalam kurung terlebih dahulu
-                </p>
-                <div class="soal-answer">
-                  <button
-                    class="answer-btn"
-                    onclick="tampilkanJawaban(this, '168')"
+                <h3>Barisan &amp; Deret Aritmetika — Produksi Pabrik</h3>
+                <div class="exam-meta">
+                  <span><i class="fas fa-clock"></i> 15 menit</span>
+                  <span><i class="fas fa-star"></i> Sedang</span>
+                  <span
+                    ><i class="fas fa-bookmark"></i> Barisan Aritmetika</span
                   >
-                    👁️ Lihat Jawaban
-                  </button>
-                  <span class="answer-result"></span>
+                </div>
+              </div>
+
+              <div class="exam-instruction">
+                <strong><i class="fas fa-info-circle"></i> Petunjuk:</strong>
+                <p>
+                  Bacalah studi kasus berikut dengan cermat, kemudian jawab
+                  pertanyaan (a), (b), dan (c).
+                </p>
+              </div>
+
+              <div class="exam-story">
+                <h4><i class="fas fa-newspaper"></i> Studi Kasus</h4>
+                <p>
+                  Sebuah pabrik sepatu meningkatkan produksinya secara teratur
+                  setiap hari. Pada hari pertama produksi menghasilkan
+                  <strong>50 pasang sepatu</strong>, hari kedua
+                  <strong>58 pasang</strong>, hari ketiga
+                  <strong>66 pasang</strong>, dan seterusnya dengan peningkatan
+                  tetap. Pabrik beroperasi selama <strong>15 hari</strong>.
+                </p>
+              </div>
+
+              <div class="exam-data">
+                <h4><i class="fas fa-list-check"></i> Informasi:</h4>
+                <ul>
+                  <li>
+                    Suku pertama (a) = <span class="highlight">50 pasang</span>
+                  </li>
+                  <li>Beda (b) = <span class="highlight">8 pasang</span></li>
+                  <li>
+                    Banyak hari (n) = <span class="highlight">15 hari</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="exam-questions">
+                <h4><i class="fas fa-question-circle"></i> Pertanyaan</h4>
+
+                <div class="question-item" data-answer="162">
+                  <p class="question-text">
+                    <strong>a)</strong> Berapa pasang sepatu yang diproduksi
+                    pada hari ke-15?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="number"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                    />
+                    <span class="input-suffix">pasang</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+
+                <div class="question-item" data-answer="1590">
+                  <p class="question-text">
+                    <strong>b)</strong> Berapa total produksi sepatu selama 15
+                    hari?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="number"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                    />
+                    <span class="input-suffix">pasang</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+
+                <div class="question-item" data-answer="20">
+                  <p class="question-text">
+                    <strong>c)</strong> Jika target produksi satu hari adalah
+                    202 pasang, pada hari ke berapa target tersebut tercapai?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="number"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                    />
+                    <span class="input-suffix">hari ke-</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+
+              <button class="toggle-answer" onclick="togglePembahasan(this)">
+                <i class="fas fa-eye"></i> Tampilkan Pembahasan Lengkap
+              </button>
+
+              <div class="answers-content">
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-square-root-variable"></i> Rumus yang
+                    Digunakan:
+                  </h5>
+                  <div class="formula-box">
+                    <p><strong>Un</strong> = a + (n − 1)b</p>
+                    <p>
+                      <strong>Sn</strong> = <sup>n</sup>⁄<sub>2</sub> (2a + (n −
+                      1)b)
+                    </p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (a): U₁₅</h5>
+                  <div class="solution-step">
+                    <p>U₁₅ = 50 + (15 − 1) × 8</p>
+                    <p>U₁₅ = 50 + 14 × 8</p>
+                    <p>U₁₅ = 50 + 112</p>
+                    <p class="final-answer">
+                      <strong>U₁₅ = 162 pasang</strong>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (b): S₁₅</h5>
+                  <div class="solution-step">
+                    <p>
+                      S₁₅ = <sup>15</sup>⁄<sub>2</sub> × (2 × 50 + (15 − 1) × 8)
+                    </p>
+                    <p>S₁₅ = 7,5 × (100 + 112)</p>
+                    <p>S₁₅ = 7,5 × 212</p>
+                    <p class="final-answer">
+                      <strong>S₁₅ = 1.590 pasang</strong>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-check-circle"></i> Jawaban (c): n saat Un =
+                    202
+                  </h5>
+                  <div class="solution-step">
+                    <p>Un = a + (n − 1)b</p>
+                    <p>202 = 50 + (n − 1) × 8</p>
+                    <p>152 = (n − 1) × 8</p>
+                    <p>n − 1 = 19</p>
+                    <p class="final-answer">
+                      <strong>n = 20 (hari ke-20)</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== SOAL 4: GAJI KARYAWAN ====== -->
+          <div class="exam-panel" id="exam4">
+            <div class="exam-card">
+              <div class="exam-header">
+                <span class="exam-badge"
+                  ><i class="fas fa-file-alt"></i> SOAL STUDI KASUS</span
+                >
+                <h3>Barisan &amp; Deret Aritmetika — Gaji Karyawan</h3>
+                <div class="exam-meta">
+                  <span><i class="fas fa-clock"></i> 15 menit</span>
+                  <span><i class="fas fa-star"></i> Sedang</span>
+                  <span
+                    ><i class="fas fa-bookmark"></i> Barisan Aritmetika</span
+                  >
+                </div>
+              </div>
+
+              <div class="exam-instruction">
+                <strong><i class="fas fa-info-circle"></i> Petunjuk:</strong>
+                <p>
+                  Bacalah studi kasus berikut dengan cermat, kemudian jawab
+                  pertanyaan (a), (b), dan (c).
+                </p>
+              </div>
+
+              <div class="exam-story">
+                <h4><i class="fas fa-newspaper"></i> Studi Kasus</h4>
+                <p>
+                  Seorang karyawan menerima gaji bulanan dengan kenaikan tetap
+                  setiap tahun. Pada tahun pertama gajinya
+                  <strong>Rp3.000.000</strong> per bulan, tahun kedua
+                  <strong>Rp3.250.000</strong> per bulan, tahun ketiga
+                  <strong>Rp3.500.000</strong> per bulan, dan seterusnya dengan
+                  kenaikan tetap.
+                </p>
+              </div>
+
+              <div class="exam-data">
+                <h4><i class="fas fa-list-check"></i> Informasi:</h4>
+                <ul>
+                  <li>
+                    Suku pertama (a) =
+                    <span class="highlight">Rp3.000.000</span>
+                  </li>
+                  <li>Beda (b) = <span class="highlight">Rp250.000</span></li>
+                </ul>
+              </div>
+
+              <div class="exam-questions">
+                <h4><i class="fas fa-question-circle"></i> Pertanyaan</h4>
+
+                <div class="question-item" data-answer="4750000">
+                  <p class="question-text">
+                    <strong>a)</strong> Berapa gaji karyawan tersebut pada tahun
+                    ke-8?
+                  </p>
+                  <div class="answer-input">
+                    <span class="input-prefix">Rp</span>
+                    <input
+                      type="number"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                    />
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+
+                <div class="question-item" data-answer="3750000">
+                  <p class="question-text">
+                    <strong>b)</strong> Berapa gaji karyawan tersebut pada tahun
+                    ke-4?
+                  </p>
+                  <div class="answer-input">
+                    <span class="input-prefix">Rp</span>
+                    <input
+                      type="number"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                    />
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+
+                <div class="question-item" data-answer="10">
+                  <p class="question-text">
+                    <strong>c)</strong> Jika karyawan ingin gajinya menjadi
+                    Rp5.250.000 per bulan, pada tahun ke berapa hal itu terjadi?
+                  </p>
+                  <div class="answer-input">
+                    <span class="input-prefix">Tahun ke-</span>
+                    <input
+                      type="number"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                    />
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+
+              <button class="toggle-answer" onclick="togglePembahasan(this)">
+                <i class="fas fa-eye"></i> Tampilkan Pembahasan Lengkap
+              </button>
+
+              <div class="answers-content">
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-square-root-variable"></i> Rumus yang
+                    Digunakan:
+                  </h5>
+                  <div class="formula-box">
+                    <p><strong>Un</strong> = a + (n − 1)b</p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (a): U₈</h5>
+                  <div class="solution-step">
+                    <p>U₈ = 3.000.000 + (8 − 1) × 250.000</p>
+                    <p>U₈ = 3.000.000 + 7 × 250.000</p>
+                    <p>U₈ = 3.000.000 + 1.750.000</p>
+                    <p class="final-answer">
+                      <strong>U₈ = Rp4.750.000</strong>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (b): U₄</h5>
+                  <div class="solution-step">
+                    <p>U₄ = 3.000.000 + (4 − 1) × 250.000</p>
+                    <p>U₄ = 3.000.000 + 3 × 250.000</p>
+                    <p>U₄ = 3.000.000 + 750.000</p>
+                    <p class="final-answer">
+                      <strong>U₄ = Rp3.750.000</strong>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-check-circle"></i> Jawaban (c): n saat Un =
+                    5.250.000
+                  </h5>
+                  <div class="solution-step">
+                    <p>Un = a + (n − 1)b</p>
+                    <p>5.250.000 = 3.000.000 + (n − 1) × 250.000</p>
+                    <p>2.250.000 = (n − 1) × 250.000</p>
+                    <p>n − 1 = 9</p>
+                    <p class="final-answer">
+                      <strong>n = 10 (tahun ke-10)</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== SOAL 5: HASIL PANEN ====== -->
+          <div class="exam-panel" id="exam5">
+            <div class="exam-card">
+              <div class="exam-header">
+                <span class="exam-badge"
+                  ><i class="fas fa-file-alt"></i> SOAL STUDI KASUS</span
+                >
+                <h3>Barisan &amp; Deret Aritmetika — Hasil Panen</h3>
+                <div class="exam-meta">
+                  <span><i class="fas fa-clock"></i> 15 menit</span>
+                  <span><i class="fas fa-star"></i> Sedang</span>
+                  <span
+                    ><i class="fas fa-bookmark"></i> Barisan Aritmetika</span
+                  >
+                </div>
+              </div>
+
+              <div class="exam-instruction">
+                <strong><i class="fas fa-info-circle"></i> Petunjuk:</strong>
+                <p>
+                  Bacalah studi kasus berikut dengan cermat, kemudian jawab
+                  pertanyaan (a), (b), dan (c).
+                </p>
+              </div>
+
+              <div class="exam-story">
+                <h4><i class="fas fa-newspaper"></i> Studi Kasus</h4>
+                <p>
+                  Seorang petani mencatat hasil panen padi setiap bulan dengan
+                  pola peningkatan tetap. Bulan pertama menghasilkan
+                  <strong>12 ton</strong>, bulan kedua <strong>15 ton</strong>,
+                  bulan ketiga <strong>18 ton</strong>, dan seterusnya. Petani
+                  tersebut bercocok tanam selama <strong>10 bulan</strong>.
+                </p>
+              </div>
+
+              <div class="exam-data">
+                <h4><i class="fas fa-list-check"></i> Informasi:</h4>
+                <ul>
+                  <li>
+                    Suku pertama (a) = <span class="highlight">12 ton</span>
+                  </li>
+                  <li>Beda (b) = <span class="highlight">3 ton</span></li>
+                  <li>
+                    Banyak bulan (n) = <span class="highlight">10 bulan</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="exam-questions">
+                <h4><i class="fas fa-question-circle"></i> Pertanyaan</h4>
+
+                <div class="question-item" data-answer="39">
+                  <p class="question-text">
+                    <strong>a)</strong> Berapa ton hasil panen pada bulan ke-10?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="number"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                    />
+                    <span class="input-suffix">ton</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+
+                <div class="question-item" data-answer="255">
+                  <p class="question-text">
+                    <strong>b)</strong> Berapa total hasil panen selama 10
+                    bulan?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="number"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                    />
+                    <span class="input-suffix">ton</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+
+                <div class="question-item" data-answer="16">
+                  <p class="question-text">
+                    <strong>c)</strong> Jika petani menargetkan panen 57 ton
+                    pada suatu bulan, bulan ke berapa target tersebut tercapai?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="number"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                    />
+                    <span class="input-suffix">bulan ke-</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+
+              <button class="toggle-answer" onclick="togglePembahasan(this)">
+                <i class="fas fa-eye"></i> Tampilkan Pembahasan Lengkap
+              </button>
+
+              <div class="answers-content">
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-square-root-variable"></i> Rumus yang
+                    Digunakan:
+                  </h5>
+                  <div class="formula-box">
+                    <p><strong>Un</strong> = a + (n − 1)b</p>
+                    <p>
+                      <strong>Sn</strong> = <sup>n</sup>⁄<sub>2</sub> (2a + (n −
+                      1)b)
+                    </p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (a): U₁₀</h5>
+                  <div class="solution-step">
+                    <p>U₁₀ = 12 + (10 − 1) × 3</p>
+                    <p>U₁₀ = 12 + 27</p>
+                    <p class="final-answer"><strong>U₁₀ = 39 ton</strong></p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (b): S₁₀</h5>
+                  <div class="solution-step">
+                    <p>
+                      S₁₀ = <sup>10</sup>⁄<sub>2</sub> × (2 × 12 + (10 − 1) × 3)
+                    </p>
+                    <p>S₁₀ = 5 × (24 + 27)</p>
+                    <p>S₁₀ = 5 × 51</p>
+                    <p class="final-answer"><strong>S₁₀ = 255 ton</strong></p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-check-circle"></i> Jawaban (c): n saat Un =
+                    57
+                  </h5>
+                  <div class="solution-step">
+                    <p>Un = a + (n − 1)b</p>
+                    <p>57 = 12 + (n − 1) × 3</p>
+                    <p>45 = (n − 1) × 3</p>
+                    <p>n − 1 = 15</p>
+                    <p class="final-answer">
+                      <strong>n = 16 (bulan ke-16)</strong>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      <!-- Members About -->
-      <div class="members-team">
-      <div class="mapel">Project Matematika</div>
-      <div class="members-info">
-        <h3>INFO PROJECT:</h3>
-        <div class="members-name">Nama Anggota: <br> Elfonda Michael, <br> Muhammad Darul Ridwan, <br> Muhammad Ibnu Sona</div> <br>
-        <div class="members-name">Pengembang: Elfonda Michael </div> <br>
-        <div class="members-name">Pemberi Saran: <br> M. D. Ridwan, <br> M. Ibnu Sona</div> <br>
-        <div class="members-name">Mapel: Matematika</div> <br>
-        <div class="members-name">Kode Editor: Visual Studio Code</div> <br>
-        <div class="members-name">Bahasa pemograman: <br> HTML, <br> CSS, <br>Javascript</div> <br>
-      </div>
-    </div>
-  </div>
+      </section>
 
-  <script src="script.js"></script>
+      <!-- ====== SECTION 8: SOAL BARISAN GEOMETRI ====== -->
+      <section id="barisanGeometriSoal" class="section">
+        <div class="container">
+          <h1>
+            <i class="fas fa-chart-line"></i> Soal Barisan & Deret Geometri
+          </h1>
+          <p class="page-subtitle">
+            Pilih studi kasus, kerjakan soalnya, lalu cek jawaban Anda.
+          </p>
+
+          <!-- Tab pemilih soal -->
+          <div class="exam-tabs">
+            <button class="exam-tab active" data-exam="geo1">
+              <i class="fas fa-bacteria"></i> Pertumbuhan Bakteri
+            </button>
+            <button class="exam-tab" data-exam="geo2">
+              <i class="fas fa-university"></i> Investasi Bunga Majemuk
+            </button>
+            <button class="exam-tab" data-exam="geo3">
+              <i class="fas fa-car"></i> Penyusutan Nilai Aset
+            </button>
+            <button class="exam-tab" data-exam="geo4">
+              <i class="fas fa-atom"></i> Pantulan Bola Membal
+            </button>
+            <button class="exam-tab" data-exam="geo5">
+              <i class="fas fa-palette"></i> Pembagian Panjang Pita
+            </button>
+          </div>
+
+          <!-- ====== SOAL 1: PERTUMBUHAN BAKTERI ====== -->
+          <div class="exam-panel active" id="geo1">
+            <div class="exam-card">
+              <div class="exam-header">
+                <span class="exam-badge"
+                  ><i class="fas fa-file-alt"></i> SOAL STUDI KASUS</span
+                >
+                <h3>Barisan &amp; Deret Geometri — Pertumbuhan Bakteri</h3>
+                <div class="exam-meta">
+                  <span><i class="fas fa-clock"></i> 15 menit</span>
+                  <span><i class="fas fa-star"></i> Sedang</span>
+                  <span><i class="fas fa-bookmark"></i> Barisan Geometri</span>
+                </div>
+              </div>
+
+              <div class="exam-instruction">
+                <strong><i class="fas fa-info-circle"></i> Petunjuk:</strong>
+                <p>
+                  Bacalah studi kasus berikut dengan cermat, kemudian jawab
+                  pertanyaan (a) dan (b).
+                </p>
+              </div>
+
+              <div class="exam-story">
+                <h4><i class="fas fa-newspaper"></i> Studi Kasus</h4>
+                <p>
+                  Sebuah laboratorium sedang mengamati perkembangbiakan spesies
+                  bakteri tertentu. Pada awal pengamatan
+                  <strong>(menit ke-0)</strong>, terdapat
+                  <strong>50 bakteri</strong>. Bakteri tersebut membelah diri
+                  menjadi <strong>2 kali lipat setiap 15 menit</strong>.
+                </p>
+              </div>
+
+              <div class="exam-data">
+                <h4><i class="fas fa-list-check"></i> Informasi:</h4>
+                <ul>
+                  <li>
+                    Suku pertama (a) = <span class="highlight">50 bakteri</span>
+                  </li>
+                  <li>Rasio (r) = <span class="highlight">2</span></li>
+                </ul>
+              </div>
+
+              <div class="exam-questions">
+                <h4><i class="fas fa-question-circle"></i> Pertanyaan</h4>
+
+                <div class="question-item" data-answer="800">
+                  <p class="question-text">
+                    <strong>a)</strong> Berapa jumlah bakteri setelah 1 jam (60
+                    menit)?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="text"
+                      inputmode="numeric"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                      autocomplete="off"
+                    />
+                    <span class="input-suffix">bakteri</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+
+                <div class="question-item" data-answer="1550">
+                  <p class="question-text">
+                    <strong>b)</strong> Berapa total bakteri dari menit ke-0
+                    sampai pembelahan ke-5?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="text"
+                      inputmode="numeric"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                      autocomplete="off"
+                    />
+                    <span class="input-suffix">bakteri</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+
+              <button class="toggle-answer" onclick="togglePembahasan(this)">
+                <i class="fas fa-eye"></i> Tampilkan Pembahasan Lengkap
+              </button>
+
+              <div class="answers-content">
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-square-root-variable"></i> Rumus yang
+                    Digunakan:
+                  </h5>
+                  <div class="formula-box">
+                    <p><strong>Un</strong> = a × r<sup>n−1</sup></p>
+                    <p>
+                      <strong>Sn</strong> = a × (r<sup>n</sup> − 1) / (r − 1), r
+                      ≠ 1
+                    </p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (a): U₅</h5>
+                  <div class="solution-step">
+                    <p>
+                      1 jam = 60 menit ÷ 15 menit =
+                      <strong>4 kali pembelahan</strong>
+                    </p>
+                    <p>U₅ = a × r<sup>4</sup></p>
+                    <p>U₅ = 50 × 2<sup>4</sup></p>
+                    <p>U₅ = 50 × 16</p>
+                    <p class="final-answer">
+                      <strong>U₅ = 800 bakteri</strong>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (b): S₆</h5>
+                  <div class="solution-step">
+                    <p>
+                      Dari menit ke-0 sampai pembelahan ke-5 = 6 suku (U₁ s.d.
+                      U₆)
+                    </p>
+                    <p>S₆ = a × (r<sup>6</sup> − 1) / (r − 1)</p>
+                    <p>S₆ = 50 × (2<sup>6</sup> − 1) / (2 − 1)</p>
+                    <p>S₆ = 50 × (64 − 1) / 1</p>
+                    <p>S₆ = 50 × 63</p>
+                    <p class="final-answer">
+                      <strong>S₆ = 3.150 bakteri</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== SOAL 2: INVESTASI BUNGA MAJEMUK ====== -->
+          <div class="exam-panel" id="geo2">
+            <div class="exam-card">
+              <div class="exam-header">
+                <span class="exam-badge"
+                  ><i class="fas fa-file-alt"></i> SOAL STUDI KASUS</span
+                >
+                <h3>Barisan &amp; Deret Geometri — Investasi Bunga Majemuk</h3>
+                <div class="exam-meta">
+                  <span><i class="fas fa-clock"></i> 15 menit</span>
+                  <span><i class="fas fa-star"></i> Sedang</span>
+                  <span><i class="fas fa-bookmark"></i> Barisan Geometri</span>
+                </div>
+              </div>
+
+              <div class="exam-instruction">
+                <strong><i class="fas fa-info-circle"></i> Petunjuk:</strong>
+                <p>
+                  Bacalah studi kasus berikut dengan cermat, kemudian jawab
+                  pertanyaan (a) dan (b).
+                </p>
+              </div>
+
+              <div class="exam-story">
+                <h4><i class="fas fa-newspaper"></i> Studi Kasus</h4>
+                <p>
+                  Pak Budi menginvestasikan uangnya sebesar
+                  <strong>Rp10.000.000</strong> di sebuah instrumen investasi
+                  dengan skema bunga majemuk sebesar
+                  <strong>10% per tahun</strong>.
+                </p>
+              </div>
+
+              <div class="exam-data">
+                <h4><i class="fas fa-list-check"></i> Informasi:</h4>
+                <ul>
+                  <li>
+                    Modal awal (a) = <span class="highlight">Rp10.000.000</span>
+                  </li>
+                  <li>
+                    Rasio (r) =
+                    <span class="highlight">1,1 (dari 100% + 10%)</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="exam-questions">
+                <h4><i class="fas fa-question-circle"></i> Pertanyaan</h4>
+
+                <div class="question-item" data-answer="13310000">
+                  <p class="question-text">
+                    <strong>a)</strong> Berapa total saldo investasi Pak Budi
+                    pada akhir tahun ke-3?
+                  </p>
+                  <div class="answer-input">
+                    <span class="input-prefix">Rp</span>
+                    <input
+                      type="text"
+                      inputmode="numeric"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                      autocomplete="off"
+                    />
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+
+                <div class="question-item" data-answer="16105100">
+                  <p class="question-text">
+                    <strong>b)</strong> Berapa jumlah saldo investasi Pak Budi
+                    setelah 5 tahun?
+                  </p>
+                  <div class="answer-input">
+                    <span class="input-prefix">Rp</span>
+                    <input
+                      type="text"
+                      inputmode="numeric"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                      autocomplete="off"
+                    />
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+
+              <button class="toggle-answer" onclick="togglePembahasan(this)">
+                <i class="fas fa-eye"></i> Tampilkan Pembahasan Lengkap
+              </button>
+
+              <div class="answers-content">
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-square-root-variable"></i> Rumus yang
+                    Digunakan:
+                  </h5>
+                  <div class="formula-box">
+                    <p><strong>Mn</strong> = M₀ × (1 + i)<sup>n</sup></p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (a): M₃</h5>
+                  <div class="solution-step">
+                    <p>M₃ = 10.000.000 × (1 + 0,1)<sup>3</sup></p>
+                    <p>M₃ = 10.000.000 × (1,1)<sup>3</sup></p>
+                    <p>M₃ = 10.000.000 × 1,331</p>
+                    <p class="final-answer">
+                      <strong>M₃ = Rp13.310.000</strong>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (b): M₅</h5>
+                  <div class="solution-step">
+                    <p>M₅ = 10.000.000 × (1,1)<sup>5</sup></p>
+                    <p>M₅ = 10.000.000 × 1,61051</p>
+                    <p class="final-answer">
+                      <strong>M₅ = Rp16.105.100</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== SOAL 3: PENYUSUTAN NILAI ASET ====== -->
+          <div class="exam-panel" id="geo3">
+            <div class="exam-card">
+              <div class="exam-header">
+                <span class="exam-badge"
+                  ><i class="fas fa-file-alt"></i> SOAL STUDI KASUS</span
+                >
+                <h3>Barisan &amp; Deret Geometri — Penyusutan Nilai Aset</h3>
+                <div class="exam-meta">
+                  <span><i class="fas fa-clock"></i> 15 menit</span>
+                  <span><i class="fas fa-star"></i> Sedang</span>
+                  <span><i class="fas fa-bookmark"></i> Barisan Geometri</span>
+                </div>
+              </div>
+
+              <div class="exam-instruction">
+                <strong><i class="fas fa-info-circle"></i> Petunjuk:</strong>
+                <p>
+                  Bacalah studi kasus berikut dengan cermat, kemudian jawab
+                  pertanyaan (a) dan (b).
+                </p>
+              </div>
+
+              <div class="exam-story">
+                <h4><i class="fas fa-newspaper"></i> Studi Kasus</h4>
+                <p>
+                  Sebuah mobil baru dibeli dengan harga
+                  <strong>Rp200.000.000</strong>. Setiap tahunnya, nilai jual
+                  mobil tersebut mengalami penyusutan (depresiasi) sebesar
+                  <strong>20%</strong> dari harga tahun sebelumnya.
+                </p>
+              </div>
+
+              <div class="exam-data">
+                <h4><i class="fas fa-list-check"></i> Informasi:</h4>
+                <ul>
+                  <li>
+                    Harga awal (a) =
+                    <span class="highlight">Rp200.000.000</span>
+                  </li>
+                  <li>
+                    Rasio (r) =
+                    <span class="highlight">0,8 (dari 100% − 20%)</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="exam-questions">
+                <h4><i class="fas fa-question-circle"></i> Pertanyaan</h4>
+
+                <div class="question-item" data-answer="0.8">
+                  <p class="question-text">
+                    <strong>a)</strong> Berapa rasio nilai jual mobil dari tahun
+                    ke tahun?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="text"
+                      inputmode="decimal"
+                      placeholder="Contoh: 0.8"
+                      class="user-answer"
+                      autocomplete="off"
+                    />
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+
+                <div class="question-item" data-answer="102400000">
+                  <p class="question-text">
+                    <strong>b)</strong> Berapa harga jual mobil tersebut setelah
+                    pemakaian selama 3 tahun?
+                  </p>
+                  <div class="answer-input">
+                    <span class="input-prefix">Rp</span>
+                    <input
+                      type="text"
+                      inputmode="numeric"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                      autocomplete="off"
+                    />
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+
+              <button class="toggle-answer" onclick="togglePembahasan(this)">
+                <i class="fas fa-eye"></i> Tampilkan Pembahasan Lengkap
+              </button>
+
+              <div class="answers-content">
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-square-root-variable"></i> Rumus yang
+                    Digunakan:
+                  </h5>
+                  <div class="formula-box">
+                    <p><strong>Un</strong> = a × r<sup>n−1</sup></p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (a)</h5>
+                  <div class="solution-step">
+                    <p>Penyusutan 20% → sisa nilai = 100% − 20% = 80%</p>
+                    <p>r = 80% = 0,8</p>
+                    <p class="final-answer"><strong>r = 0,8</strong></p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (b): U₄</h5>
+                  <div class="solution-step">
+                    <p>U₄ = 200.000.000 × (0,8)<sup>3</sup></p>
+                    <p>U₄ = 200.000.000 × 0,512</p>
+                    <p class="final-answer">
+                      <strong>U₄ = Rp102.400.000</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== SOAL 4: PANTULAN BOLA MEMBAL ====== -->
+          <div class="exam-panel" id="geo4">
+            <div class="exam-card">
+              <div class="exam-header">
+                <span class="exam-badge"
+                  ><i class="fas fa-file-alt"></i> SOAL STUDI KASUS</span
+                >
+                <h3>Barisan &amp; Deret Geometri — Pantulan Bola Membal</h3>
+                <div class="exam-meta">
+                  <span><i class="fas fa-clock"></i> 15 menit</span>
+                  <span><i class="fas fa-star"></i> Sedang</span>
+                  <span><i class="fas fa-bookmark"></i> Barisan Geometri</span>
+                </div>
+              </div>
+
+              <div class="exam-instruction">
+                <strong><i class="fas fa-info-circle"></i> Petunjuk:</strong>
+                <p>
+                  Bacalah studi kasus berikut dengan cermat, kemudian jawab
+                  pertanyaan (a) dan (b).
+                </p>
+              </div>
+
+              <div class="exam-story">
+                <h4><i class="fas fa-newspaper"></i> Studi Kasus</h4>
+                <p>
+                  Sebuah bola dijatuhkan secara vertikal dari ketinggian
+                  <strong>8 Meter</strong>. Setiap kali memantul di lantai, bola
+                  mencapai ketinggian <strong>3\4</strong> dari tinggi pantulan
+                  sebelumnya
+                </p>
+              </div>
+
+              <div class="exam-data">
+                <h4><i class="fas fa-list-check"></i> Informasi:</h4>
+                <ul>
+                  <li>
+                    Ketinggian awal (h0) =
+                    <span class="highlight">8 Meter</span>
+                  </li>
+                  <li>
+                    Rasio (r) =
+                    <span class="highlight">3/4</span>
+                  </li>
+                  <li>
+                    Tinggi Pantulan ke-n (tn) =
+                    <span class="highlight">
+                      t<sub>n</sub> = h<sub>0</sub> &times; r<sup>n</sup>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="exam-questions">
+                <h4><i class="fas fa-question-circle"></i> Pertanyaan</h4>
+
+                <div class="question-item" data-answer="3,375">
+                  <p class="question-text">
+                    <strong>a)</strong> Berapa tinggi pantulan bola pada
+                    pantulan ke-3?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="text"
+                      inputmode="decimal"
+                      placeholder="Contoh: 0.8"
+                      class="user-answer"
+                      autocomplete="off"
+                    />
+                    <span class="input-prefix">Meter</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+
+                <div class="question-item" data-answer="56">
+                  <p class="question-text">
+                    <strong>b)</strong> Berapa total panjang lintasan bola
+                    sampai bola tersebut berhenti memantul?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="text"
+                      inputmode="numeric"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                      autocomplete="off"
+                    />
+                    <span class="input-prefix">Meter</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+
+              <button class="toggle-answer" onclick="togglePembahasan(this)">
+                <i class="fas fa-eye"></i> Tampilkan Pembahasan Lengkap
+              </button>
+
+              <div class="answers-content">
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-square-root-variable"></i> Rumus yang
+                    Digunakan:
+                  </h5>
+                  <div class="formula-box">
+                    <p><strong>Un</strong> = a × r<sup>n−1</sup></p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (a) m</h5>
+                  <div class="solution-step">
+                    <p>perhitungan (n = 3):</p>
+                    <p>
+                      t<sub>3</sub> = 8 &times; (3/4)<sup>3</sup> = 8 &times;
+                      (27/64) = 3,375 meter
+                    </p>
+                    <p class="final-answer"><strong>3,375 meter</strong></p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (b): tl</h5>
+                  <div class="solution-step">
+                    <p>Total Lintasan = 8 &times; ((4 + 3) / (4 - 3))</p>
+                    <p>Total Lintasan = 8 &times; (7 / 1) = 56 meter</p>
+                    <p class="final-answer">
+                      <strong>56 meter</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== SOAL 5: Pembagian Panjang Pita ====== -->
+          <div class="exam-panel" id="geo5">
+            <div class="exam-card">
+              <div class="exam-header">
+                <span class="exam-badge"
+                  ><i class="fas fa-file-alt"></i> SOAL STUDI KASUS</span
+                >
+                <h3>Barisan &amp; Deret Geometri — Pembagian Panjang Pita</h3>
+                <div class="exam-meta">
+                  <span><i class="fas fa-clock"></i> 15 menit</span>
+                  <span><i class="fas fa-star"></i> Sedang</span>
+                  <span><i class="fas fa-bookmark"></i> Barisan Geometri</span>
+                </div>
+              </div>
+
+              <div class="exam-instruction">
+                <strong><i class="fas fa-info-circle"></i> Petunjuk:</strong>
+                <p>
+                  Bacalah studi kasus berikut dengan cermat, kemudian jawab
+                  pertanyaan (a) dan (b).
+                </p>
+              </div>
+
+              <div class="exam-story">
+                <h4><i class="fas fa-newspaper"></i> Studi Kasus</h4>
+                <p>
+                  Seorang pengrajin memotong seutas pita menjadi<strong
+                    >5</strong
+                  >
+                  Bagian sedemikian rupa sehingga panjang masing-masing potongan
+                  membentuk barisan geometri. Potongan pita terpendek berukuran
+                  <strong>4 cm</strong> dan potongan pita terpanjang berukuran
+                  <strong>64 cm</strong>.
+                </p>
+              </div>
+
+              <div class="exam-data">
+                <h4><i class="fas fa-list-check"></i> Informasi:</h4>
+                <ul>
+                  <li>
+                    Banyak Potongan (n) =
+                    <span class="highlight">5</span>
+                  </li>
+                  <li>
+                    Potongan terpendek (U1 = a) =
+                    <span class="highlight">4 cm</span>
+                  </li>
+                  <li>
+                    Potongan terpanjang (U5 = a) =
+                    <span class="highlight">64 cm</span>
+                  </li>
+                  <li>
+                    Rumus
+                    <span class="highlight">
+                      <strong>Un</strong> = a × r<sup>n−1</sup>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="exam-questions">
+                <h4><i class="fas fa-question-circle"></i> Pertanyaan</h4>
+
+                <div class="question-item" data-answer="2">
+                  <p class="question-text">
+                    <strong>a)</strong> Berapa rasio pemotongan pita tersebut?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="text"
+                      inputmode="decimal"
+                      placeholder="Contoh: 0.8"
+                      class="user-answer"
+                      autocomplete="off"
+                    />
+                    <span class="input-prefix">cm</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+
+                <div class="question-item" data-answer="124">
+                  <p class="question-text">
+                    <strong>b)</strong> Berapa panjang total pita semula sebelum
+                    dipotong?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="text"
+                      inputmode="decimal"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                      autocomplete="off"
+                    />
+                    <span class="input-prefix">cm</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+
+              <button class="toggle-answer" onclick="togglePembahasan(this)">
+                <i class="fas fa-eye"></i> Tampilkan Pembahasan Lengkap
+              </button>
+
+              <div class="answers-content">
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-square-root-variable"></i> Rumus yang
+                    Digunakan:
+                  </h5>
+                  <div class="formula-box">
+                    <p><strong>Un</strong> = a × r<sup>n−1</sup></p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (a)</h5>
+                  <div class="solution-step">
+                    <p>U<sub>5</sub> = a &times; r<sup>4</sup></p>
+                    <p>64 = 4 &times; r<sup>4</sup></p>
+                    <p>r<sup>4</sup> = 64 / 4 = 16</p>
+                    <p>r = <sup>4</sup>&radic;16 = 2</p>
+                    <p class="final-answer"><strong>2 cm</strong></p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (b): U₄</h5>
+                  <div class="solution-step">
+                    <p>
+                      S<sub>5</sub> = (4 &times; (2<sup>5</sup> - 1)) / (2 - 1)
+                    </p>
+                    <p>S<sub>5</sub> = (4 &times; (32 - 1)) / 1</p>
+                    <p>S<sub>5</sub> = 4 &times; 31 = 124 cm</p>
+                    <p class="final-answer">
+                      <strong>124 cm</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 9: SOAL DERET GEOMETRI TAK TERHINGGA ====== -->
+      <section id="deretgeometritakterhinga" class="section">
+        <div class="container">
+          <h1>
+            <i class="fas fa-chart-line"></i> Soal Deret Geometri Tak Terhingga
+          </h1>
+          <p class="page-subtitle">
+            Pilih studi kasus, kerjakan soalnya, lalu cek jawaban Anda.
+          </p>
+
+          <!-- Tab pemilih soal -->
+          <div class="exam-tabs">
+            <button class="exam-tab active" data-exam="geo1">
+              <i class="fas fa-pills"></i> Dosis Obat Dalam Tubuh
+            </button>
+            <button class="exam-tab" data-exam="geo2">
+              <i class="fas fa-coins"></i> Efek Multiplier Ekonomi
+            </button>
+            <button class="exam-tab" data-exam="geo3">
+              <i class="fas fa-shapes"></i> Desain Karpet Fraktal
+            </button>
+            <button class="exam-tab" data-exam="geo4">
+              <i class="fas fa-flask"></i> Penguapan Cairan Kimia
+            </button>
+            <button class="exam-tab" data-exam="geo5">
+              <i class="fas fa-cogs"></i> Ayunan Bandul Jam Dinding
+            </button>
+          </div>
+
+          <!-- ====== SOAL 1: Dosis Obat dalam Tubuh ====== -->
+          <div class="exam-panel active" id="geo1">
+            <div class="exam-card">
+              <div class="exam-header">
+                <span class="exam-badge"
+                  ><i class="fas fa-file-alt"></i> SOAL STUDI KASUS</span
+                >
+                <h3>Deret Geometri Tak Terhingga — Dosis Obat dalam Tubuh</h3>
+                <div class="exam-meta">
+                  <span><i class="fas fa-clock"></i> 15 menit</span>
+                  <span><i class="fas fa-star"></i> Sedang</span>
+                  <span
+                    ><i class="fas fa-bookmark"></i>Deret Geometri Tak
+                    Terhingga</span
+                  >
+                </div>
+              </div>
+
+              <div class="exam-instruction">
+                <strong><i class="fas fa-info-circle"></i> Petunjuk:</strong>
+                <p>
+                  Bacalah studi kasus berikut dengan cermat, kemudian jawab
+                  pertanyaan (a) dan (b).
+                </p>
+              </div>
+
+              <div class="exam-story">
+                <h4><i class="fas fa-newspaper"></i> Studi Kasus</h4>
+                <p>
+                  Seorang pasien diberikan dosis awal obat sebesar
+                  <strong>200 mg</strong>. Setiap <strong>6 jam</strong>, tubuh
+                  pasien mengeliminasi obat sehingga sisa obat yang bertahan
+                  dalam tubuh adalah<strong>1\4</strong> dari dosis periode
+                  sebelumnya. Proses ini berlanjut terus-menerus tanpa batas
+                  waktu.
+                </p>
+              </div>
+
+              <div class="exam-data">
+                <h4><i class="fas fa-list-check"></i> Informasi:</h4>
+                <ul>
+                  <li>Dosis Awal = <span class="highlight">200 mg</span></li>
+                  <li>Eleminasi Obat= <span class="highlight">6 jam</span></li>
+                </ul>
+              </div>
+
+              <div class="exam-questions">
+                <h4><i class="fas fa-question-circle"></i> Pertanyaan</h4>
+
+                <div class="question-item" data-answer="0,25">
+                  <p class="question-text">
+                    <strong>a)</strong> Berapa rasio (r) dan suku pertama (a)
+                    dari sisa obat dalam tubuh pasien?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="text"
+                      inputmode="numeric"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                      autocomplete="off"
+                    />
+                    <span class="input-suffix">mg</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+
+                <div class="question-item" data-answer="266,67">
+                  <p class="question-text">
+                    <strong>b)</strong> Berapa total akumulasi seluruh sisa obat
+                    yang ada di dalam tubuh pasien dari waktu ke waktu sampai
+                    obat tersebut habis sepenuhnya?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="text"
+                      inputmode="numeric"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                      autocomplete="off"
+                    />
+                    <span class="input-suffix">mg</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+
+              <button class="toggle-answer" onclick="togglePembahasan(this)">
+                <i class="fas fa-eye"></i> Tampilkan Pembahasan Lengkap
+              </button>
+
+              <div class="answers-content">
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-square-root-variable"></i> Rumus yang
+                    Digunakan:
+                  </h5>
+                  <div class="formula-box">
+                    <p>S<sub>&infin;</sub> = a / (1 - r)</p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (a)</h5>
+                  <div class="solution-step">
+                    <p>Suku pertama (a) = 200 mg</p>
+                    <p>Rasio (r) = 1/4 (atau 0,25)</p>
+                    <p class="final-answer">
+                      <strong>0,25 mg</strong>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (b)</h5>
+                  <div class="solution-step">
+                    <p>S<sub>&infin;</sub> = a / (1 - r)</p>
+                    <p>S<sub>&infin;</sub> = 200 / (1 - 1/4)</p>
+                    <p>S<sub>&infin;</sub> = 200 / (3/4)</p>
+                    <p>
+                      S<sub>&infin;</sub> = 200 &times; (4/3) = 800/3 = 266,67
+                      mg
+                    </p>
+                    <p class="final-answer">
+                      <strong>266,67 mg</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== SOAL 2: Efek Multiplier Ekonomi ====== -->
+          <div class="exam-panel" id="geo2">
+            <div class="exam-card">
+              <div class="exam-header">
+                <span class="exam-badge"
+                  ><i class="fas fa-file-alt"></i> SOAL STUDI KASUS</span
+                >
+                <h3>Deret Geometri Tak Terhingga — Efek Multiplier Ekonomi</h3>
+                <div class="exam-meta">
+                  <span><i class="fas fa-clock"></i> 15 menit</span>
+                  <span><i class="fas fa-star"></i> Sedang</span>
+                  <span
+                    ><i class="fas fa-bookmark"></i> Deret Geometri Tak
+                    Terhingga</span
+                  >
+                </div>
+              </div>
+
+              <div class="exam-instruction">
+                <strong><i class="fas fa-info-circle"></i> Petunjuk:</strong>
+                <p>
+                  Bacalah studi kasus berikut dengan cermat, kemudian jawab
+                  perntanyaan di bawah ini.
+                </p>
+              </div>
+
+              <div class="exam-story">
+                <h4><i class="fas fa-newspaper"></i> Studi Kasus</h4>
+                <p>
+                  Pemerintah mengucurkan dana stimulus ekonomi sebesar
+                  <strong>Rp50 Miliar</strong> kepada masyarakat. Berdasarkan
+                  analisis, masyarakat membelanjakan
+                  <strong>60% (3\5)</strong> dari setiap uang yang diterima
+                  untuk konsumsi. Uang hasil belanja tersebut akan menjadi
+                  pendapatan bagi orang lain yang kemudian membelanjakan
+                  <strong>60%</strong> dari uang itu kembali, dan seterusnya tak
+                  berhingga.
+                </p>
+              </div>
+
+              <div class="exam-data">
+                <h4><i class="fas fa-list-check"></i> Informasi:</h4>
+                <ul>
+                  <li>
+                    Jumlah Dana Stimulus =
+                    <span class="highlight">Rp50.000.000.000</span>
+                  </li>
+                  <li>
+                    yang dibelanjakan Masyarakat =
+                    <span class="highlight">60% (3\5)</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="exam-questions">
+                <h4><i class="fas fa-question-circle"></i> Pertanyaan</h4>
+
+                <div class="question-item" data-answer="125000000000">
+                  <p class="question-text">
+                    <strong>a)</strong> Berapa total dampak putaran uang (efek
+                    multiplier) yang tercipta dari dana stimulus tersebut?
+                  </p>
+                  <span class="input-suffix">Rp</span>
+                  <div class="answer-input">
+                    <input
+                      type="text"
+                      inputmode="numeric"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                      autocomplete="off"
+                    />
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+
+              <button class="toggle-answer" onclick="togglePembahasan(this)">
+                <i class="fas fa-eye"></i> Tampilkan Pembahasan Lengkap
+              </button>
+
+              <div class="answers-content">
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-square-root-variable"></i> Rumus yang
+                    Digunakan:
+                  </h5>
+                  <div class="formula-box">
+                    <p>S<sub>&infin;</sub> = a / (1 - r)</p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban</h5>
+                  <div class="solution-step">
+                    <p>S<sub>&infin;</sub> = a / (1 - r)</p>
+                    <p>S<sub>&infin;</sub> = 50 / (1 - 0,6)</p>
+                    <p>S<sub>&infin;</sub> = 50 / 0,4 = 125 miliar</p>
+                    <p class="final-answer">
+                      <strong>Rp125.000.000.000</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== SOAL 3: DESAIN KARPET FRAKTAL ====== -->
+          <div class="exam-panel" id="geo3">
+            <div class="exam-card">
+              <div class="exam-header">
+                <span class="exam-badge"
+                  ><i class="fas fa-file-alt"></i> SOAL STUDI KASUS</span
+                >
+                <h3>
+                  Brisan & Deret Geometri Tak Terhingga — Desain Karpet Fraktal
+                </h3>
+                <div class="exam-meta">
+                  <span><i class="fas fa-clock"></i> 15 menit</span>
+                  <span><i class="fas fa-star"></i> Sedang</span>
+                  <span
+                    ><i class="fas fa-bookmark"></i>Deret Geometri Tak
+                    Terhingga</span
+                  >
+                </div>
+              </div>
+
+              <div class="exam-instruction">
+                <strong><i class="fas fa-info-circle"></i> Petunjuk:</strong>
+                <p>
+                  Bacalah studi kasus berikut dengan cermat, kemudian jawab
+                  pertanyaan (a) dan (b).
+                </p>
+              </div>
+
+              <div class="exam-story">
+                <h4><i class="fas fa-newspaper"></i> Studi Kasus</h4>
+                <p>
+                  Seorang seniman membuat seni fraktal berbentuk persegi.
+                  Persegi utama memiliki luas <strong>100 cm</strong>. Di dalam
+                  persegi tersebut dibuat persegi kedua dengan luas
+                  <strong>1\2</strong> dari luas persegi sebelumnya. Proses
+                  menggambar persegi di dalam persegi ini dilakukan
+                  berulang-ulang hingga tak terhingga.
+                </p>
+              </div>
+
+              <div class="exam-data">
+                <h4><i class="fas fa-list-check"></i> Informasi:</h4>
+                <ul>
+                  <li>
+                    Luas (a) =
+                    <span class="highlight">100cm</span>
+                  </li>
+                  <li>
+                    Mencari suku ke-4(U4) dengan rumus =
+                    <span class="highlight">
+                      S<sub>&infin;</sub> = a / (1 - r)
+                    </span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="exam-questions">
+                <h4><i class="fas fa-question-circle"></i> Pertanyaan</h4>
+
+                <div class="question-item" data-answer="12.5">
+                  <p class="question-text">
+                    <strong>a)</strong> Berapa luas persegi ke-4?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="text"
+                      inputmode="decimal"
+                      placeholder="Contoh: 0.8"
+                      class="user-answer"
+                      autocomplete="off"
+                    />
+                    <span class="input-suffix">cm</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+
+                <div class="question-item" data-answer="200">
+                  <p class="question-text">
+                    <strong>b)</strong> Berapa total jumlah seluruh luas persegi
+                    yang terbentuk?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="text"
+                      inputmode="numeric"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                      autocomplete="off"
+                    />
+                    <span class="input-suffix">cm</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+
+              <button class="toggle-answer" onclick="togglePembahasan(this)">
+                <i class="fas fa-eye"></i> Tampilkan Pembahasan Lengkap
+              </button>
+
+              <div class="answers-content">
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-square-root-variable"></i> Rumus yang
+                    Digunakan:
+                  </h5>
+                  <div class="formula-box">
+                    <p>S<sub>&infin;</sub> = a / (1 - r)</p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (a)</h5>
+                  <div class="solution-step">
+                    <p>U<sub>n</sub> = a &times; r<sup>n-1</sup></p>
+                    <p>U<sub>4</sub> = 100 &times; (1/2)<sup>4-1</sup></p>
+                    <p>U<sub>4</sub> = 100 &times; (1/2)<sup>3</sup></p>
+                    <p>
+                      U<sub>4</sub> = 100 &times; (1/8) = 12,5 cm<sup>2</sup>
+                    </p>
+                    <p class="final-answer"><strong>12.5 cm</strong></p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (b): U₄</h5>
+                  <div class="solution-step">
+                    <p>S<sub>&infin;</sub> = a / (1 - r)</p>
+                    <p>S<sub>&infin;</sub> = 100 / (1 - 1/2)</p>
+                    <p>
+                      S<sub>&infin;</sub> = 100 / (1/2) = 200 cm<sup>2</sup>
+                    </p>
+                    <p class="final-answer">
+                      <strong>200 cm</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== SOAL 4: Penguapan Cairan Kimia ====== -->
+          <div class="exam-panel" id="geo4">
+            <div class="exam-card">
+              <div class="exam-header">
+                <span class="exam-badge"
+                  ><i class="fas fa-file-alt"></i> SOAL STUDI KASUS</span
+                >
+                <h3>Deret Geometri Tak Terhingga— Penguapan Cairan Kimia</h3>
+                <div class="exam-meta">
+                  <span><i class="fas fa-clock"></i> 15 menit</span>
+                  <span><i class="fas fa-star"></i> Sedang</span>
+                  <span
+                    ><i class="fas fa-bookmark"></i> Deret Geometri Tak
+                    Terhingga</span
+                  >
+                </div>
+              </div>
+
+              <div class="exam-instruction">
+                <strong><i class="fas fa-info-circle"></i> Petunjuk:</strong>
+                <p>
+                  Bacalah studi kasus berikut dengan cermat, kemudian jawab
+                  pertanyaan (a) dan (b).
+                </p>
+              </div>
+
+              <div class="exam-story">
+                <h4><i class="fas fa-newspaper"></i> Studi Kasus</h4>
+                <p>
+                  Di dalam sebuah wadah terbuka terdapat
+                  <strong>81 liter</strong> cairan kimia yang mudah menguap.
+                  Pada hari pertama, terjadi penguapan sebanyak
+                  <strong>27 liter</strong>. Pada hari kedua, cairan menguap
+                  sebanyak <strong>9 liter</strong>, hari ketiga sebanyak
+                  <strong>3 liter</strong>, dan volume penguapan ini terus
+                  berkurang secara geometris hingga penguapan berhenti.
+                </p>
+              </div>
+
+              <div class="exam-data">
+                <h4><i class="fas fa-list-check"></i> Informasi:</h4>
+                <ul>
+                  <li>
+                    Jumlah Awal :
+                    <span class="highlight">81 Liter</span>
+                  </li>
+                  <li>
+                    Penguapan Pertama :
+                    <span class="highlight">27 liter</span>
+                  </li>
+                  <li>
+                    Penguapan Kedua :
+                    <span class="highlight"> 9 liter </span>
+                  </li>
+                  <li>
+                    Penguapan Ketiga :
+                    <span class="highlight"> 3 liter </span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="exam-questions">
+                <h4><i class="fas fa-question-circle"></i> Pertanyaan</h4>
+
+                <div class="question-item" data-answer="1/3">
+                  <p class="question-text">
+                    <strong>a)</strong> Berapa rasio penurunan volume penguapan
+                    harian tersebut?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="text"
+                      inputmode="decimal"
+                      placeholder="Contoh: 0.8"
+                      class="user-answer"
+                      autocomplete="off"
+                    />
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+
+                <div class="question-item" data-answer="40,5">
+                  <p class="question-text">
+                    <strong>b)</strong> Berapa total liter cairan kimia yang
+                    menguap secara keseluruhan?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="text"
+                      inputmode="decimal"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                      autocomplete="off"
+                    />
+                    <span class="input-prefix">Liter</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+
+              <button class="toggle-answer" onclick="togglePembahasan(this)">
+                <i class="fas fa-eye"></i> Tampilkan Pembahasan Lengkap
+              </button>
+
+              <div class="answers-content">
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-square-root-variable"></i> Rumus yang
+                    Digunakan:
+                  </h5>
+                  <div class="formula-box">
+                    <p>S<sub>&infin;</sub> = a / (1 - r)</p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (a)</h5>
+                  <div class="solution-step">
+                    <p>r = U<sub>2</sub> / U<sub>1</sub></p>
+                    <p>r = 9 / 27 = 1/3</p>
+                    <p class="final-answer"><strong>r = 1/3</strong></p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (b)</h5>
+                  <div class="solution-step">
+                    <p>S<sub>&infin;</sub> = a / (1 - r)</p>
+                    <p>S<sub>&infin;</sub> = 27 / (1 - 1/3)</p>
+                    <p>S<sub>&infin;</sub> = 27 / (2/3)</p>
+                    <p>
+                      S<sub>&infin;</sub> = 27 &times; (3/2) = 81/2 = 40,5 liter
+                    </p>
+                    <p class="final-answer">
+                      <strong>40,5 Liter</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== SOAL 5: Ayunan Bandul Jam Dinding ====== -->
+          <div class="exam-panel" id="geo5">
+            <div class="exam-card">
+              <div class="exam-header">
+                <span class="exam-badge"
+                  ><i class="fas fa-file-alt"></i> SOAL STUDI KASUS</span
+                >
+                <h3>
+                  Barisan & Deret Deret Geometri Tak Terhingga — Ayunan Bandul
+                  Jam Dinding
+                </h3>
+                <div class="exam-meta">
+                  <span><i class="fas fa-clock"></i> 15 menit</span>
+                  <span><i class="fas fa-star"></i> Sedang</span>
+                  <span
+                    ><i class="fas fa-bookmark"></i>Deret Geometri Tak
+                    Terhingga</span
+                  >
+                </div>
+              </div>
+
+              <div class="exam-instruction">
+                <strong><i class="fas fa-info-circle"></i> Petunjuk:</strong>
+                <p>
+                  Bacalah studi kasus berikut dengan cermat, kemudian jawab
+                  pertanyaan (a) dan (b).
+                </p>
+              </div>
+
+              <div class="exam-story">
+                <h4><i class="fas fa-newspaper"></i> Studi Kasus</h4>
+                <p>
+                  Sebuah bandul jam dinding dilepaskan. Pada ayunan pertama,
+                  panjang lintasan busur yang ditempuh bandul adalah
+                  <strong>30 cm</strong>. Karena gaya gesek udara, panjang
+                  lintasan ayunan berikutnya selalu menjadi
+                  <strong>0,8 (4/5)</strong> dari panjang ayunan sebelumnya.
+                  Ayunan ini berlanjut terus sampai bandul berhenti total.
+                </p>
+              </div>
+
+              <div class="exam-data">
+                <h4><i class="fas fa-list-check"></i> Informasi:</h4>
+                <ul>
+                  <li>
+                    Panjang Lintasan Busur :
+                    <span class="highlight">30cm</span>
+                  </li>
+                  <li>
+                    Panjang lintasan selanjutnya
+                    <span class="highlight">0,8 (4/5)</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="exam-questions">
+                <h4><i class="fas fa-question-circle"></i> Pertanyaan</h4>
+
+                <div class="question-item" data-answer="19,2">
+                  <p class="question-text">
+                    <strong>a)</strong> Berapa panjang lintasan pada ayunan
+                    ke-3?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="text"
+                      inputmode="decimal"
+                      placeholder="Contoh: 0.8"
+                      class="user-answer"
+                      autocomplete="off"
+                    />
+                    <span class="input-prefix">cm</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+
+                <div class="question-item" data-answer="150">
+                  <p class="question-text">
+                    <strong>b)</strong>Berapa total jarak seluruh lintasan yang
+                    ditempuh bandul sampai berhenti sepenuhnya?
+                  </p>
+                  <div class="answer-input">
+                    <input
+                      type="text"
+                      inputmode="decimal"
+                      placeholder="Masukkan jawaban..."
+                      class="user-answer"
+                      autocomplete="off"
+                    />
+                    <span class="input-prefix">cm</span>
+                    <button class="check-btn" onclick="checkAnswer(this)">
+                      <i class="fas fa-check"></i> Cek
+                    </button>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+
+              <button class="toggle-answer" onclick="togglePembahasan(this)">
+                <i class="fas fa-eye"></i> Tampilkan Pembahasan Lengkap
+              </button>
+
+              <div class="answers-content">
+                <div class="answer-block">
+                  <h5>
+                    <i class="fas fa-square-root-variable"></i> Rumus yang
+                    Digunakan:
+                  </h5>
+                  <div class="formula-box">
+                    <p>S<sub>&infin;</sub> = a / (1 - r)</p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (a)</h5>
+                  <div class="solution-step">
+                    <p>U<sub>n</sub> = a &times; r<sup>n-1</sup></p>
+                    <p>U<sub>3</sub> = 30 &times; (0,8)<sup>3-1</sup></p>
+                    <p>U<sub>3</sub> = 30 &times; (0,8)<sup>2</sup></p>
+                    <p>U<sub>3</sub> = 30 &times; 0,64 = 19,2 cm</p>
+                    <p class="final-answer"><strong>19,2 cm</strong></p>
+                  </div>
+                </div>
+
+                <div class="answer-block">
+                  <h5><i class="fas fa-check-circle"></i> Jawaban (b): U₄</h5>
+                  <div class="solution-step">
+                    <p>S<sub>&infin;</sub> = a / (1 - r)</p>
+                    <p>S<sub>&infin;</sub> = 30 / (1 - 0,8)</p>
+                    <p>S<sub>&infin;</sub> = 30 / 0,2 = 150 cm</p>
+                    <p class="final-answer">
+                      <strong>150 cm</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 10: ABOUT THIS PROJECT ====== -->
+      <section id="about" class="section">
+        <div class="container">
+          <h1><i class="fas fa-info-circle"></i> Tentang Project Ini</h1>
+          <p class="page-subtitle">
+            Informasi tentang Website MathTools Enterprise.
+          </p>
+
+          <div class="about-container">
+            <div class="about-card">
+              <i class="fas fa-calculator about-icon"></i>
+              <h3>MathTools Enterprise</h3>
+              <p>
+                Kumpulan alat kalkulator dan pembelajaran matematika untuk
+                kebutuhan sehari-hari maupun edukasi.
+              </p>
+            </div>
+
+            <div class="about-features">
+              <h3>Mengapa Project ini dibuat:</h3>
+              <p>
+                Mengapa Website Ini Dibuat Website MathTools Enterprise dibuat
+                untuk membantu siswa memahami dan mengerjakan materi barisan dan
+                deret, khususnya barisan dan deret aritmetika serta geometri.
+                Website ini menyediakan kalkulator, soal latihan, dan studi
+                kasus yang berkaitan dengan kehidupan sehari-hari agar
+                pembelajaran matematika menjadi lebih mudah, interaktif, dan
+                menarik. Selain itu, website ini dibuat sebagai media
+                pembelajaran digital yang membantu siswa berlatih menghitung,
+                memahami konsep, dan mengecek jawaban secara mandiri.
+              </p>
+            </div>
+            <div class="about-features">
+              <h3>Fitur yang Tersedia:</h3>
+              <ul>
+                <li>
+                  <i class="fas fa-check"></i> Kalkulator Biasa — Operasi
+                  aritmetika dasar
+                </li>
+                <li>
+                  <i class="fas fa-check"></i> Barisan Aritmetika — Menghitung
+                  suku ke-n
+                </li>
+                <li>
+                  <i class="fas fa-check"></i> Barisan Geometri — Menghitung
+                  suku ke-n
+                </li>
+                <li>
+                  <i class="fas fa-check"></i> Deret Aritmetika — Menghitung
+                  jumlah n suku
+                </li>
+                <li>
+                  <i class="fas fa-check"></i> Deret Geometri — Menghitung
+                  jumlah n suku
+                </li>
+                <li>
+                  <i class="fas fa-check"></i> Deret Geometri Tak Terhingga —
+                  Konvergen
+                </li>
+                <li>
+                  <i class="fas fa-check"></i> Soal Barisan Aritmetika — 5 studi
+                  kasus + cek jawaban
+                </li>
+              </ul>
+            </div>
+
+            <div class="about-features">
+              <h3>Spesifikasi Project:</h3>
+              <p>Kode Editor: Visual studio code</p>
+              <p>Bahasa Pemograman: HTML, CSS, JavaScript</p>
+              <p>Nama A.I: Deepseek</p>
+              <p>Penggunaan A.I: 60%</p>
+              <p>Framework: Tidak Ada</p>
+              <p>Developer: Elfonda Michael</p>
+              <p>
+                Pemberi Saran & Design: Muhammad Ibnu Sona & Muhammad Darul
+                Ridwan
+              </p>
+              <p>Mapel: Matematika</p>
+            </div>
+
+            <div class="contact-info">
+              <h4>Sosial Media</h4>
+              <p>
+                <i class="fab fa-instagram"></i>
+                <a
+                  href="https://www.instagram.com/prgmmichael?stkn=cWtnYzFpbmQ2amxv"
+                  class="contact-link"
+                  >@Prgmichael</a
+                >
+              </p>
+              <p>
+                <i class="fab fa-tiktok"></i>
+                <a
+                  href="https://www.tiktok.com/@iiiiiibnuuuuuuu?_r=1&_t=ZS-99dxVwZyLIK"
+                  class="contact-link"
+                  >@iiiiiibnuuuuuuu</a
+                >
+              </p>
+              <p>
+                <i class="fab fa-tiktok"></i>
+                <a href="#" class="contact-link">Muhamad Darul Ridwan</a>
+              </p>
+            </div>
+
+            <div class="about-tech">
+              <h3>Teknologi:</h3>
+              <div class="tech-stack">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">Vanilla JavaScript</span>
+                <span class="tech-tag">Responsive</span>
+                <span class="tech-tag">Font Awesome</span>
+              </div>
+            </div>
+
+            <div class="about-info">
+              <p><strong>Versi:</strong> 1.0.4</p>
+              <p><strong>Tahun:</strong> 2026</p>
+              <p><strong>Lisensi:</strong> MIT License</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 11: INFO AKUN ====== -->
+      <section id="account" class="section">
+        <div class="container">
+          <h1><i class="fas fa-user-circle"></i> Info Akun</h1>
+          <p class="page-subtitle">Informasi akun Anda yang sedang login.</p>
+
+          <div class="account-container">
+            <!-- Kartu Profil -->
+            <div class="account-card">
+              <div class="account-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <h3 id="accountName">Guest User</h3>
+              <p id="accountEmail">guest@mathtools.com</p>
+              <span class="account-badge">
+                <i class="fas fa-crown"></i> Free Plan
+              </span>
+            </div>
+
+            <!-- Detail Akun -->
+            <div class="account-details">
+              <h3><i class="fas fa-id-card"></i> Detail Akun</h3>
+              <div class="account-detail-row">
+                <span class="detail-label"
+                  ><i class="fas fa-user"></i> Nama</span
+                >
+                <span class="detail-value" id="detailName">Guest User</span>
+              </div>
+              <div class="account-detail-row">
+                <span class="detail-label"
+                  ><i class="fas fa-envelope"></i> Email</span
+                >
+                <span class="detail-value" id="detailEmail">-</span>
+              </div>
+              <div class="account-detail-row">
+                <span class="detail-label"
+                  ><i class="fas fa-sign-in-alt"></i> Waktu Login</span
+                >
+                <span class="detail-value" id="detailLoginTime">-</span>
+              </div>
+              <div class="account-detail-row">
+                <span class="detail-label"
+                  ><i class="fas fa-shield-alt"></i> Status</span
+                >
+                <span class="detail-value" id="detailStatus">
+                  <span class="status-active"
+                    ><i class="fas fa-circle"></i> Aktif</span
+                  >
+                </span>
+              </div>
+            </div>
+
+            <!-- Tombol Logout -->
+            <div class="account-actions">
+              <button class="btn-logout" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
   </body>
 </html>
