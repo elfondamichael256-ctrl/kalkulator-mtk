@@ -275,3 +275,329 @@ input {
 .btn-guest:active {
     transform: translateY(0) scale(0.97) !important;
 }
+
+/* =========================================
+   RESPONSIVE FORM LOGIN
+   ========================================= */
+
+/* Tablet & HP besar (≤ 768px) */
+@media (max-width: 768px) {
+    body {
+        margin: 0;
+        padding: 20px 15px;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+        min-height: 520px;
+        border-radius: 12px;
+    }
+
+    .form-container {
+        width: 100%;
+    }
+
+    form {
+        padding: 0 40px;
+    }
+
+    form h1 {
+        font-size: 1.5rem;
+    }
+
+    form span {
+        font-size: 11px;
+        margin-bottom: 6px;
+    }
+
+    input {
+        padding: 11px 14px;
+        margin: 6px 0;
+        font-size: 13px;
+    }
+
+    button {
+        padding: 11px 35px;
+        font-size: 11px;
+    }
+
+    .btn-guest {
+        padding: 9px 22px !important;
+        font-size: 10px !important;
+    }
+
+    .overlay-panel {
+        padding: 0 30px;
+    }
+
+    .overlay-panel h1 {
+        font-size: 1.3rem;
+    }
+
+    .overlay-panel p {
+        font-size: 12px;
+        line-height: 18px;
+        margin: 14px 0 20px;
+    }
+
+    a {
+        font-size: 12px;
+        margin: 10px 0;
+    }
+}
+
+/* HP (≤ 600px) — Overlay disembunyikan, form full width */
+@media (max-width: 600px) {
+    body {
+        padding: 15px 12px;
+        align-items: flex-start;
+        padding-top: 30px;
+    }
+
+    .container {
+        min-height: auto;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Sembunyikan overlay container */
+    .overlay-container {
+        display: none;
+    }
+
+    /* Form jadi full width & static */
+    .form-container {
+        position: relative;
+        width: 100%;
+        height: auto;
+        min-height: auto;
+    }
+
+    .sign-in-container,
+    .sign-up-container {
+        width: 100%;
+        position: relative;
+        left: 0;
+        top: 0;
+        transform: none !important;
+        opacity: 1;
+        z-index: 1;
+        animation: none !important;
+        transition: none;
+    }
+
+    /* Default: Sign In tampil, Sign Up disembunyikan */
+    .sign-up-container {
+        display: none;
+        opacity: 0;
+    }
+
+    /* Mode toggle pakai kelas .right-panel-active */
+    .container.right-panel-active .sign-in-container {
+        display: none;
+        transform: none;
+    }
+
+    .container.right-panel-active .sign-up-container {
+        display: block;
+        opacity: 1;
+        animation: fadeMobile 0.4s ease;
+    }
+
+    @keyframes fadeMobile {
+        from { opacity: 0; transform: translateY(10px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    form {
+        padding: 35px 26px;
+        height: auto;
+        min-height: 420px;
+        justify-content: center;
+    }
+
+    form h1 {
+        font-size: 1.45rem;
+        margin-bottom: 4px;
+    }
+
+    form > span {
+        font-size: 11.5px;
+        margin: 4px 0 10px;
+        color: #64748b;
+    }
+
+    input {
+        padding: 13px 16px;
+        margin: 8px 0;
+        font-size: 14px;
+        border-radius: 8px;
+    }
+
+    /* Tombol utama */
+    form button[type="submit"] {
+        padding: 13px 40px;
+        font-size: 12px;
+        margin-top: 6px;
+        width: 100%;
+        max-width: 260px;
+        border-radius: 25px;
+    }
+
+    /* Tombol guest */
+    .btn-guest {
+        padding: 11px 24px !important;
+        font-size: 11px !important;
+        width: 100%;
+        max-width: 260px;
+        margin-top: 10px;
+        border-radius: 25px;
+        display: inline-flex !important;
+    }
+
+    /* Tombol switch Sign In / Sign Up (di HP) */
+    .mobile-switch {
+        display: block;
+        margin-top: 18px;
+        font-size: 12px;
+        color: #64748b;
+        text-align: center;
+    }
+
+    .mobile-switch a {
+        color: #1B365D;
+        font-weight: 700;
+        margin: 0 0 0 4px;
+        font-size: 12px;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    a {
+        font-size: 12.5px;
+        margin: 8px 0;
+    }
+}
+
+/* HP kecil (≤ 400px) */
+@media (max-width: 400px) {
+    body {
+        padding: 12px 8px;
+        padding-top: 20px;
+    }
+
+    .container {
+        border-radius: 12px;
+    }
+
+    form {
+        padding: 28px 20px;
+        min-height: 380px;
+    }
+
+    form h1 {
+        font-size: 1.25rem;
+    }
+
+    form > span {
+        font-size: 10.5px;
+    }
+
+    input {
+        padding: 11px 14px;
+        font-size: 13px;
+        margin: 6px 0;
+    }
+
+    form button[type="submit"] {
+        padding: 12px 30px;
+        font-size: 11px;
+    }
+
+    .btn-guest {
+        padding: 10px 20px !important;
+        font-size: 10px !important;
+    }
+
+    a {
+        font-size: 11.5px;
+    }
+}
+
+/* HP sangat kecil (≤ 340px) */
+@media (max-width: 340px) {
+    form {
+        padding: 22px 16px;
+    }
+
+    form h1 {
+        font-size: 1.15rem;
+    }
+
+    input {
+        padding: 10px 12px;
+        font-size: 12.5px;
+    }
+
+    form button[type="submit"] {
+        font-size: 10.5px;
+        padding: 11px 24px;
+    }
+
+    .btn-guest {
+        font-size: 9.5px !important;
+        padding: 9px 18px !important;
+    }
+}
+
+/* Landscape HP (tinggi ≤ 500px) */
+@media (max-height: 500px) and (orientation: landscape) {
+    body {
+        padding: 10px;
+        align-items: center;
+        min-height: 100vh;
+        height: auto;
+    }
+
+    .container {
+        min-height: auto;
+        max-height: 95vh;
+    }
+
+    form {
+        padding: 20px 26px;
+        min-height: auto;
+    }
+
+    form h1 {
+        font-size: 1.2rem;
+        margin-bottom: 2px;
+    }
+
+    input {
+        padding: 9px 12px;
+        margin: 4px 0;
+        font-size: 12.5px;
+    }
+
+    form button[type="submit"] {
+        padding: 9px 26px;
+        font-size: 10.5px;
+        margin-top: 4px;
+    }
+
+    .btn-guest {
+        margin-top: 6px;
+        padding: 8px 18px !important;
+        font-size: 10px !important;
+    }
+
+    form > span,
+    a {
+        font-size: 11px;
+        margin: 4px 0;
+    }
+}
