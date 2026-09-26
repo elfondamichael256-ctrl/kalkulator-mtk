@@ -142,9 +142,7 @@ body.sidebar-collapsed .sidebar .collapse-btn {
   display: none;
 }
 
-/* =========================================
-   SIDEBAR HEADER (BRAND)
-   ========================================= */
+/* ======== SIDEBAR HEADER (BRAND) ======== */
 .sidebar-header {
   display: flex;
   align-items: center;
@@ -637,7 +635,7 @@ body.sidebar-collapsed .sidebar-footer {
 }
 
 /* =========================================
-   5. MAIN CONTENT
+    5. MAIN CONTENT
    ========================================= */
 .main-content {
   margin-left: 268px;
@@ -699,7 +697,7 @@ body.sidebar-collapsed .main-content {
 }
 
 /* =========================================
-   DASHBOARD
+   6. DASHBOARD
    ========================================= */
 .dashboard-container {
   max-width: 1100px;
@@ -711,7 +709,7 @@ body.sidebar-collapsed .main-content {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  background: linear-gradient(135deg, #2563eb, #1e40af);
+  background: linear-gradient(135deg, #0f172a, #1e293b);
   border-radius: 18px;
   padding: 36px 40px;
   margin-bottom: 24px;
@@ -980,7 +978,7 @@ body.sidebar-collapsed .main-content {
 }
 
 /* =========================================
-   6. CARD SYSTEM
+   7. CARD SYSTEM
    ========================================= */
 .calculator,
 .calc-container,
@@ -1008,7 +1006,7 @@ body.sidebar-collapsed .main-content {
 }
 
 /* =========================================
-   7. CALCULATOR BIASA
+   8. CALCULATOR BIASA
    ========================================= */
 .calculator {
   max-width: 400px;
@@ -1104,7 +1102,7 @@ body.sidebar-collapsed .main-content {
 }
 
 /* =========================================
-   8. KALKULATOR SERIES (Barisan & Deret)
+   9. KALKULATOR SERIES (Barisan & Deret)
    ========================================= */
 .calc-container {
   max-width: 620px;
@@ -1192,7 +1190,7 @@ body.sidebar-collapsed .main-content {
 }
 
 /* =========================================
-   9. BUTTONS
+    BUTTONS
    ========================================= */
 .button-group {
   display: flex;
@@ -1762,7 +1760,7 @@ body.sidebar-collapsed .main-content {
 }
 
 /* =========================================
-   13. ABOUT
+   12. ABOUT
    ========================================= */
 .about-card {
   text-align: center;
@@ -2087,7 +2085,7 @@ body.sidebar-collapsed .main-content {
 }
 
 /* =========================================
-   14. INFO AKUN
+   13. INFO AKUN
    ========================================= */
 .account-container {
   max-width: 620px;
