@@ -56,13 +56,33 @@
       </div>
 
       <nav class="sidebar-nav">
+        <!-- ================= KAPSUL: HOME / DASHBOARD ================= -->
+        <a
+          href="#dashboard"
+          class="nav-link-home nav-link active"
+          data-section="dashboard"
+          data-tooltip="Home / Dashboard"
+        >
+          <i class="fas fa-home"></i>
+          <span class="nav-text">Home / Dashboard</span>
+        </a>
+
+        <!-- ================= KAPSUL: 7 MACAM KALKULATOR ================= -->
         <div class="nav-section">
-          <span class="nav-label">Kalkulator</span>
-          <ul>
+          <div
+            class="nav-section-header"
+            data-tooltip="7 Macam Kalkulator"
+            data-target="kalkulator"
+          >
+            <i class="fas fa-calculator nav-section-icon"></i>
+            <span class="nav-label">7 Macam Kalkulator</span>
+            <i class="fas fa-chevron-down nav-section-arrow"></i>
+          </div>
+          <ul class="nav-section-list" id="kalkulator">
             <li>
               <a
                 href="#calculator"
-                class="nav-link active"
+                class="nav-link"
                 data-section="calculator"
                 data-tooltip="Kalkulator Biasa"
               >
@@ -83,17 +103,6 @@
             </li>
             <li>
               <a
-                href="#barisanGeometri"
-                class="nav-link"
-                data-section="barisanGeometri"
-                data-tooltip="Barisan Geometri"
-              >
-                <i class="fas fa-shapes"></i>
-                <span class="nav-text">Barisan Geometri</span>
-              </a>
-            </li>
-            <li>
-              <a
                 href="#deretAritmetika"
                 class="nav-link"
                 data-section="deretAritmetika"
@@ -105,7 +114,18 @@
             </li>
             <li>
               <a
-                href="#deretGeometri"
+                href="#barisanGeometri"
+                class="nav-link"
+                data-section="barisanGeometri"
+                data-tooltip="Barisan Geometri"
+              >
+                <i class="fas fa-shapes"></i>
+                <span class="nav-text">Barisan Geometri</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#deretgeometri"
                 class="nav-link"
                 data-section="deretGeometri"
                 data-tooltip="Deret Geometri"
@@ -128,9 +148,18 @@
           </ul>
         </div>
 
+        <!-- ================= KAPSUL: SOAL LATIHAN ================= -->
         <div class="nav-section">
-          <span class="nav-label">Soal Latihan</span>
-          <ul>
+          <div
+            class="nav-section-header"
+            data-tooltip="Soal Latihan"
+            data-target="soal"
+          >
+            <i class="fas fa-book nav-section-icon"></i>
+            <span class="nav-label">Soal Latihan</span>
+            <i class="fas fa-chevron-down nav-section-arrow"></i>
+          </div>
+          <ul class="nav-section-list" id="soal">
             <li>
               <a
                 href="#arithmetic"
@@ -142,8 +171,6 @@
                 <span class="nav-text">Soal Barisan & Deret Aritmetika</span>
               </a>
             </li>
-          </ul>
-          <ul>
             <li>
               <a
                 href="#barisanGeometriSoal"
@@ -155,25 +182,32 @@
                 <span class="nav-text">Soal Barisan & Deret Geometri</span>
               </a>
             </li>
-          </ul>
-          <ul>
             <li>
               <a
-                href="#deretgeometritakterhinga"
+                href="#deretgeometritakterhingga"
                 class="nav-link"
                 data-section="deretgeometritakterhinga"
-                data-tooltip="Soal Barisan Geometri"
+                data-tooltip="Soal Deret Geometri Tak Terhingga"
               >
                 <i class="fas fa-tasks"></i>
-                <span class="nav-text">Soal Deret Geometri Tak Terhinga</span>
+                <span class="nav-text">Soal Deret Geometri Tak Terhingga</span>
               </a>
             </li>
           </ul>
         </div>
 
+        <!-- ================= SECTION: TENTANG PROJECT ================= -->
         <div class="nav-section">
-          <span class="nav-label">INFO</span>
-          <ul>
+          <div
+            class="nav-section-header"
+            data-tooltip="Tentang Project"
+            data-target="tentang"
+          >
+            <i class="fas fa-info-circle nav-section-icon"></i>
+            <span class="nav-label">Tentang Project</span>
+            <i class="fas fa-chevron-down nav-section-arrow"></i>
+          </div>
+          <ul class="nav-section-list" id="tentang">
             <li>
               <a
                 href="#about"
@@ -182,7 +216,7 @@
                 data-tooltip="About This Project"
               >
                 <i class="fas fa-info-circle"></i>
-                <span class="nav-text">Tentang Project ini</span>
+                <span class="nav-text">Tentang Project Ini</span>
               </a>
             </li>
           </ul>
@@ -204,7 +238,7 @@
             <span id="userEmailDisplay">Free Plan</span>
           </div>
         </a>
-        <p class="copyright">@ 2026 MathTools v1.0.5</p>
+        <p class="copyright">@ 2026 MathTools v1.0.7</p>
       </div>
     </aside>
 
@@ -214,6 +248,205 @@
          MAIN CONTENT
     ============================= -->
     <main class="main-content">
+      <!-- ====== SECTION 1: Dashboard ====== -->
+      <section id="dashboard" class="section active">
+        <div class="container dashboard-container">
+          <!-- HERO -->
+          <div class="dashboard-hero">
+            <div class="dashboard-hero-text">
+              <p class="dashboard-greeting" id="dashboardGreeting">
+                Selamat Datang 👋
+              </p>
+              <h1 id="dashboardTitle">
+                Selamat Datang di MathTools Enterprise
+              </h1>
+              <p class="dashboard-subtitle">
+                Satu tempat untuk semua kebutuhan hitungmu — kalkulator dasar,
+                barisan &amp; deret aritmetika, geometri, hingga latihan soal
+                interaktif.
+              </p>
+              <div class="dashboard-hero-actions">
+                <a
+                  href="#calculator"
+                  class="btn-dashboard-primary nav-link"
+                  data-section="calculator"
+                >
+                  <i class="fas fa-calculator"></i> Mulai Menghitung
+                </a>
+                <a
+                  href="#about"
+                  class="btn-dashboard-secondary nav-link"
+                  data-section="about"
+                >
+                  <i class="fas fa-info-circle"></i> Tentang Project
+                </a>
+              </div>
+            </div>
+            <div class="dashboard-hero-icon">
+              <i class="fas fa-calculator"></i>
+            </div>
+          </div>
+
+          <!-- STATS -->
+          <div class="dashboard-stats">
+            <div class="dashboard-stat-card">
+              <div class="dashboard-stat-icon stat-blue">
+                <i class="fas fa-calculator"></i>
+              </div>
+              <div class="dashboard-stat-info">
+                <span class="dashboard-stat-value">6</span>
+                <span class="dashboard-stat-label">Jenis Kalkulator</span>
+              </div>
+            </div>
+            <div class="dashboard-stat-card">
+              <div class="dashboard-stat-icon stat-green">
+                <i class="fas fa-book"></i>
+              </div>
+              <div class="dashboard-stat-info">
+                <span class="dashboard-stat-value">3</span>
+                <span class="dashboard-stat-label">Paket Soal Latihan</span>
+              </div>
+            </div>
+            <div class="dashboard-stat-card">
+              <div class="dashboard-stat-icon stat-amber">
+                <i class="fas fa-infinity"></i>
+              </div>
+              <div class="dashboard-stat-info">
+                <span class="dashboard-stat-value">∞</span>
+                <span class="dashboard-stat-label"
+                  >Perhitungan Tanpa Batas</span
+                >
+              </div>
+            </div>
+            <div class="dashboard-stat-card">
+              <div class="dashboard-stat-icon stat-purple">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="dashboard-stat-info">
+                <span class="dashboard-stat-value" id="dashboardClock"
+                  >--:--</span
+                >
+                <span class="dashboard-stat-label" id="dashboardDate"
+                  >Memuat tanggal...</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- AKSES CEPAT: KALKULATOR -->
+          <div class="dashboard-section-block">
+            <h2 class="dashboard-block-title">
+              <i class="fas fa-bolt"></i> Akses Cepat Kalkulator
+            </h2>
+            <div class="dashboard-grid">
+              <a
+                href="#calculator"
+                class="dashboard-card nav-link"
+                data-section="calculator"
+              >
+                <div class="dashboard-card-icon">
+                  <i class="fas fa-calculator"></i>
+                </div>
+                <h3>Kalkulator Biasa</h3>
+                <p>Operasi hitung dasar: tambah, kurang, kali, bagi.</p>
+              </a>
+              <a
+                href="#barisanAritmetika"
+                class="dashboard-card nav-link"
+                data-section="barisanAritmetika"
+              >
+                <div class="dashboard-card-icon">
+                  <i class="fas fa-square-root-variable"></i>
+                </div>
+                <h3>Barisan Aritmetika</h3>
+                <p>Hitung suku ke-n dari barisan aritmetika.</p>
+              </a>
+              <a
+                href="#deretAritmetika"
+                class="dashboard-card nav-link"
+                data-section="deretAritmetika"
+              >
+                <div class="dashboard-card-icon">
+                  <i class="fas fa-chart-simple"></i>
+                </div>
+                <h3>Deret Aritmetika</h3>
+                <p>Hitung jumlah n suku pertama deret aritmetika.</p>
+              </a>
+              <a
+                href="#barisanGeometri"
+                class="dashboard-card nav-link"
+                data-section="barisanGeometri"
+              >
+                <div class="dashboard-card-icon">
+                  <i class="fas fa-shapes"></i>
+                </div>
+                <h3>Barisan Geometri</h3>
+                <p>Hitung suku ke-n dari barisan geometri.</p>
+              </a>
+              <a
+                href="#deretgeometri"
+                class="dashboard-card nav-link"
+                data-section="deretGeometri"
+              >
+                <div class="dashboard-card-icon">
+                  <i class="fas fa-wave-square"></i>
+                </div>
+                <h3>Deret Geometri</h3>
+                <p>Hitung jumlah n suku pertama deret geometri.</p>
+              </a>
+              <a href="#gtt" class="dashboard-card nav-link" data-section="gtt">
+                <div class="dashboard-card-icon">
+                  <i class="fas fa-infinity"></i>
+                </div>
+                <h3>Deret Geometri Tak Terhingga</h3>
+                <p>Hitung jumlah deret geometri tak terhingga.</p>
+              </a>
+            </div>
+          </div>
+
+          <!-- AKSES CEPAT: SOAL LATIHAN -->
+          <div class="dashboard-section-block">
+            <h2 class="dashboard-block-title">
+              <i class="fas fa-book"></i> Soal Latihan
+            </h2>
+            <div class="dashboard-grid dashboard-grid-3">
+              <a
+                href="#arithmetic"
+                class="dashboard-card nav-link"
+                data-section="arithmetic"
+              >
+                <div class="dashboard-card-icon icon-green">
+                  <i class="fas fa-tasks"></i>
+                </div>
+                <h3>Barisan &amp; Deret Aritmetika</h3>
+                <p>Uji pemahamanmu dengan latihan soal.</p>
+              </a>
+              <a
+                href="#barisanGeometriSoal"
+                class="dashboard-card nav-link"
+                data-section="barisanGeometriSoal"
+              >
+                <div class="dashboard-card-icon icon-green">
+                  <i class="fas fa-tasks"></i>
+                </div>
+                <h3>Barisan &amp; Deret Geometri</h3>
+                <p>Uji pemahamanmu dengan latihan soal.</p>
+              </a>
+              <a
+                href="#deretgeometritakterhingga"
+                class="dashboard-card nav-link"
+                data-section="deretgeometritakterhinga"
+              >
+                <div class="dashboard-card-icon icon-green">
+                  <i class="fas fa-tasks"></i>
+                </div>
+                <h3>Deret Geometri Tak Terhingga</h3>
+                <p>Uji pemahamanmu dengan latihan soal.</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
       <!-- ====== SECTION 1: KALKULATOR BIASA ====== -->
       <section id="calculator" class="section active">
         <div class="container">
@@ -577,7 +810,7 @@
                   <div class="answer-input">
                     <span class="input-prefix">Rp</span>
                     <input
-                      type="number"
+                      type="decimal"
                       placeholder="Masukkan jawaban..."
                       class="user-answer"
                     />
@@ -588,7 +821,7 @@
                   <div class="feedback"></div>
                 </div>
 
-                <div class="question-item" data-answer="77000">
+                <div class="question-item" data-answer="56000">
                   <p class="question-text">
                     <strong>b)</strong> Berapa total tabungan Andi selama 7
                     minggu pertama?
@@ -596,7 +829,7 @@
                   <div class="answer-input">
                     <span class="input-prefix">Rp</span>
                     <input
-                      type="number"
+                      type="decimal"
                       placeholder="Masukkan jawaban..."
                       class="user-answer"
                     />
@@ -659,12 +892,13 @@
                 <div class="answer-block">
                   <h5><i class="fas fa-check-circle"></i> Jawaban (b): S₇</h5>
                   <div class="solution-step">
-                    <p>
-                      S₇ = <sup>7</sup>⁄<sub>2</sub> × (2 × 5.000 + (7 − 1) ×
-                      1.000)
-                    </p>
-                    <p>S₇ = <sup>7</sup>⁄<sub>2</sub> × (10.000 + 6.000)</p>
-                    <p>S₇ = <sup>7</sup>⁄<sub>2</sub> × 16.000</p>
+                    <p>Un = a + (n-1) &times; d</p>
+                    <p>S<sub>n</sub> = n/2 &times; (a + U<sub>n</sub>)</p>
+
+                    <p>U<sub>7</sub> = 5000 + (7-1) &times; 1000 = 11000</p>
+                    <p>S<sub>7</sub> = (7/2) &times; (5000 + 11000) = 56000</p>
+                    <p>(n-1)<sup>2</sup></p>
+
                     <p class="final-answer"><strong>S₇ = Rp56.000</strong></p>
                   </div>
                 </div>
@@ -1465,7 +1699,7 @@
                   <div class="feedback"></div>
                 </div>
 
-                <div class="question-item" data-answer="1550">
+                <div class="question-item" data-answer="3.150">
                   <p class="question-text">
                     <strong>b)</strong> Berapa total bakteri dari menit ke-0
                     sampai pembelahan ke-5?
@@ -1473,7 +1707,7 @@
                   <div class="answer-input">
                     <input
                       type="text"
-                      inputmode="numeric"
+                      inputmode="decimal"
                       placeholder="Masukkan jawaban..."
                       class="user-answer"
                       autocomplete="off"
@@ -2581,7 +2815,7 @@
               <div class="exam-questions">
                 <h4><i class="fas fa-question-circle"></i> Pertanyaan</h4>
 
-                <div class="question-item" data-answer="1/3">
+                <div class="question-item" data-answer="1,3">
                   <p class="question-text">
                     <strong>a)</strong> Berapa rasio penurunan volume penguapan
                     harian tersebut?
@@ -2642,8 +2876,8 @@
                   <h5><i class="fas fa-check-circle"></i> Jawaban (a)</h5>
                   <div class="solution-step">
                     <p>r = U<sub>2</sub> / U<sub>1</sub></p>
-                    <p>r = 9 / 27 = 1/3</p>
-                    <p class="final-answer"><strong>r = 1/3</strong></p>
+                    <p>r = 9 / 27 = 1,3</p>
+                    <p class="final-answer"><strong>r = 1,3</strong></p>
                   </div>
                 </div>
 
@@ -2879,7 +3113,7 @@
               <h3>Spesifikasi Project:</h3>
               <p>Kode Editor: Visual studio code</p>
               <p>Bahasa Pemograman: HTML, CSS, JavaScript</p>
-              <p>Nama A.I: Deepseek</p>
+              <p>Nama A.I: Deepseek & Claude</p>
               <p>Penggunaan A.I: 60%</p>
               <p>Framework: Tidak Ada</p>
               <p>Mapel: Matematika</p>
@@ -3064,7 +3298,9 @@
                   </div>
                   <div class="profile-card__meta-item">
                     <span class="profile-card__meta-label">Email</span>
-                    <span class="profile-card__meta-value"></span>
+                    <span class="profile-card__meta-value"
+                      >darulzyrex@gmail.com</span
+                    >
                   </div>
                 </div>
 
@@ -3096,7 +3332,7 @@
             </div>
 
             <div class="about-info">
-              <p><strong>Versi:</strong> 1.0.5</p>
+              <p><strong>Versi:</strong> 1.0.7</p>
               <p><strong>Tahun:</strong> 2026</p>
               <p><strong>Lisensi:</strong> MIT License</p>
             </div>

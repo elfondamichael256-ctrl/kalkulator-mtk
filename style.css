@@ -134,16 +134,6 @@ body.sidebar-collapsed .sidebar .copyright {
   width: 0;
 }
 
-body.sidebar-collapsed .sidebar .nav-link {
-  justify-content: center;
-  padding: 11px 0;
-}
-
-body.sidebar-collapsed .sidebar .nav-link i {
-  margin: 0;
-  font-size: 1.1rem;
-}
-
 body.sidebar-collapsed .sidebar .sidebar-header {
   justify-content: center;
 }
@@ -152,6 +142,9 @@ body.sidebar-collapsed .sidebar .collapse-btn {
   display: none;
 }
 
+/* =========================================
+   SIDEBAR HEADER (BRAND)
+   ========================================= */
 .sidebar-header {
   display: flex;
   align-items: center;
@@ -193,7 +186,7 @@ body.sidebar-collapsed .sidebar .collapse-btn {
 
 .brand-text span {
   font-size: 0.68rem;
-  color: #93b4e0;
+  color: #ffffff;
   letter-spacing: 0.6px;
   text-transform: uppercase;
   font-weight: 500;
@@ -205,13 +198,13 @@ body.sidebar-collapsed .sidebar .collapse-btn {
   border-radius: 6px;
   border: 1px solid transparent;
   background: transparent;
-  color: #93b4e0;
+  color: #64748b;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.75rem;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
   flex-shrink: 0;
 }
 
@@ -220,6 +213,9 @@ body.sidebar-collapsed .sidebar .collapse-btn {
   color: #ffffff;
 }
 
+/* =========================================
+   SIDEBAR NAV CONTAINER
+   ========================================= */
 .sidebar-nav {
   flex: 1;
   overflow-y: auto;
@@ -236,39 +232,141 @@ body.sidebar-collapsed .sidebar .collapse-btn {
   border-radius: 10px;
 }
 
-.nav-section {
-  margin-bottom: 20px;
-}
-
-.nav-label {
-  display: block;
-  font-size: 0.67rem;
+/* =========================================
+   HOME / DASHBOARD LINK (KAPSUL AKTIF)
+   ========================================= */
+.nav-link-home {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  background: #dbeafe;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
   font-weight: 700;
-  letter-spacing: 0.9px;
-  color: #6b8cbc;
-  padding: 0 12px 6px;
+  font-size: 0.88rem;
+  text-decoration: none;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-link-home i {
+  width: 18px;
+  min-width: 18px;
+  text-align: center;
+  font-size: 1rem;
+  color: #1d4ed8;
+}
+
+.nav-link-home:hover {
+  background: #bfdbfe;
+}
+
+.nav-link-home.active::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: #1d4ed8;
+  border-radius: 0 4px 4px 0;
+}
+
+/* =========================================
+   NAV SECTION (GRUP MENU)
+   ========================================= */
+.nav-section {
+  margin-bottom: 8px;
+}
+
+/* =========================================
+   NAV SECTION HEADER (KAPSUL BIRU MUDA)
+   ========================================= */
+.nav-section-header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 14px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  background: #dbeafe;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.nav-section-header:hover {
+  background: #bfdbfe;
+}
+
+.nav-section-icon {
+  width: 18px;
+  min-width: 18px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #1d4ed8;
+  transition: all 0.2s ease;
+}
+
+.nav-section-header .nav-label {
+  flex: 1;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: #1d4ed8;
   text-transform: uppercase;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+  margin: 0;
+  transition: all 0.2s ease;
 }
 
-.nav-section ul {
+.nav-section-arrow {
+  font-size: 0.7rem;
+  color: #1d4ed8;
+  transition: transform 0.3s ease;
+}
+
+.nav-section.open .nav-section-arrow {
+  transform: rotate(180deg);
+}
+
+/* =========================================
+   NAV SECTION LIST (SUB MENU - DEFAULT TERTUTUP)
+   ========================================= */
+.nav-section-list {
   list-style: none;
+  padding: 6px 0;
+  margin: 0;
+  display: none;
 }
 
-.nav-section ul li {
+.nav-section.open .nav-section-list {
+  display: block;
+}
+
+.nav-section-list li {
   margin-bottom: 2px;
 }
 
+/* =========================================
+   NAV LINK (ITEM MENU)
+   ========================================= */
 .nav-link {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 11px;
-  padding: 9px 12px;
-  border-radius: 6px;
-  color: #c1d3ec;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: #ffffff;
   text-decoration: none;
-  font-size: 0.875rem;
+  font-size: 0.88rem;
   font-weight: 500;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
@@ -278,49 +376,131 @@ body.sidebar-collapsed .sidebar .collapse-btn {
   width: 18px;
   min-width: 18px;
   text-align: center;
-  font-size: 0.92rem;
-  color: #93b4e0;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.95rem;
+  color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+/* Warna ikon sub-menu bertingkat */
+.nav-section-list .nav-link:nth-child(1) i {
+  color: #ffffff;
+}
+.nav-section-list .nav-link:nth-child(2) i {
+  color: #16a34a;
+}
+.nav-section-list .nav-link:nth-child(3) i {
+  color: #d97706;
 }
 
 .nav-link:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
+  background: #f1f5f9;
+  color: #1d4ed8;
 }
 
 .nav-link:hover i {
-  color: #ffffff;
+  color: #1d4ed8;
 }
 
 .nav-link.active {
-  background: rgba(37, 99, 235, 0.35);
-  color: #ffffff;
+  background: #eff6ff;
+  color: #1d4ed8;
   font-weight: 600;
 }
 
-.nav-link.active i {
-  color: #93c5fd;
+/* =========================================
+   PENYESUAIAN SAAT SIDEBAR COLLAPSED
+   (REVISI: overlay kapsul ala referensi foto)
+   ========================================= */
+
+/* 1) Home: TETAP pill aktif biru, bukan transparan */
+body.sidebar-collapsed .sidebar .nav-link-home {
+  background: #dbeafe;
+  border: 1px solid #bfdbfe;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 12px;
+  padding: 0;
+  border-radius: 10px;
 }
 
-.nav-link.active::before {
-  content: "";
-  position: absolute;
-  left: -10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3px;
-  height: 18px;
-  background: #60a5fa;
-  border-radius: 0 3px 3px 0;
+body.sidebar-collapsed .sidebar .nav-link-home:hover {
+  background: #bfdbfe;
 }
 
-body.sidebar-collapsed .nav-link::after {
+body.sidebar-collapsed .sidebar .nav-link-home i {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+body.sidebar-collapsed .sidebar .nav-link-home.active::before {
+  left: -6px;
+  height: 70%;
+}
+
+/* 2) Header section saat collapsed: kapsul kosong, TAPI tetap tombol toggle aktif */
+body.sidebar-collapsed .sidebar .nav-section-header {
+  background: #dbeafe;
+  border: none;
+  width: 32px;
+  height: 14px;
+  min-height: 14px;
+  margin: 10px auto;
+  padding: 0;
+  border-radius: 999px;
+  cursor: pointer; /* tetap bisa diklik */
+}
+
+body.sidebar-collapsed .sidebar .nav-section-header:hover {
+  background: #bfdbfe;
+}
+
+/* Saat section-nya sedang dibuka, kapsul kasih penanda aktif */
+body.sidebar-collapsed .sidebar .nav-section.open .nav-section-header {
+  background: #bfdbfe;
+}
+
+/* Sembunyikan ikon/label/arrow header saat collapsed, biar kapsul tetap polos */
+body.sidebar-collapsed .sidebar .nav-section-header .nav-section-icon,
+body.sidebar-collapsed .sidebar .nav-section-header .nav-label,
+body.sidebar-collapsed .sidebar .nav-section-header .nav-section-arrow {
+  display: none;
+}
+
+/* 3) Submenu ikut logika buka/tutup yang SAMA seperti mode expanded:
+   default tertutup (lihat rule .nav-section-list { display:none } di atas),
+   dan terbuka hanya saat .nav-section.open (lihat .nav-section.open .nav-section-list).
+   Jadi TIDAK ada lagi override "selalu tampil" di sini. */
+body.sidebar-collapsed .sidebar .nav-section-list {
+  padding: 4px 0 10px;
+}
+
+/* 4) Item submenu tampil icon-only, center, transparan (tanpa pill) */
+body.sidebar-collapsed .sidebar .nav-link {
+  justify-content: center;
+  padding: 10px 0;
+  background: transparent;
+}
+
+body.sidebar-collapsed .sidebar .nav-link.active {
+  background: #eff6ff;
+  border-radius: 10px;
+  margin: 0 10px;
+}
+
+body.sidebar-collapsed .sidebar .nav-link i {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+/* Tooltip nav-link tetap aktif saat collapsed (nama menu muncul saat hover ikon) */
+body.sidebar-collapsed .sidebar .nav-link::after {
   content: attr(data-tooltip);
   position: absolute;
-  left: calc(100% + 8px);
+  left: calc(100% + 12px);
   top: 50%;
   transform: translateY(-50%);
-  background: #0f172a;
+  background: #1e293b;
   color: #ffffff;
   padding: 6px 10px;
   border-radius: 6px;
@@ -330,18 +510,18 @@ body.sidebar-collapsed .nav-link::after {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
   z-index: 1100;
-  box-shadow:
-    0 8px 24px rgba(15, 23, 42, 0.08),
-    0 4px 8px rgba(15, 23, 42, 0.04);
 }
 
-body.sidebar-collapsed .nav-link:hover::after {
+body.sidebar-collapsed .sidebar .nav-link:hover::after {
   opacity: 1;
   visibility: visible;
 }
 
+/* =========================================
+   SIDEBAR FOOTER
+   ========================================= */
 .sidebar-footer {
   padding: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -359,12 +539,30 @@ body.sidebar-collapsed .nav-link:hover::after {
   gap: 10px;
   padding: 8px;
   border-radius: 6px;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent; /* matikan highlight bawaan browser saat tap/klik */
+  outline: none;
 }
 
 .user-info:hover {
   background: rgba(255, 255, 255, 0.08);
+}
+
+/* FIX: reset background setelah diklik (focus/active),
+   supaya tidak "nyangkut" di warna hover/putih */
+.user-info:focus,
+.user-info:active {
+  background: transparent;
+  outline: none;
+}
+
+/* Tetap kasih indikator aksesibilitas saat navigasi via keyboard (Tab),
+   tanpa background nyangkut */
+.user-info:focus-visible {
+  outline: 2px solid #93c5fd;
+  outline-offset: 2px;
+  background: transparent;
 }
 
 .user-avatar {
@@ -419,10 +617,6 @@ body.sidebar-collapsed .sidebar-footer {
   padding: 10px 8px;
 }
 
-body.sidebar-collapsed .sidebar .user-info.nav-link {
-  justify-content: center;
-  padding: 8px;
-}
 /* =========================================
    4. OVERLAY
    ========================================= */
@@ -502,6 +696,287 @@ body.sidebar-collapsed .main-content {
   font-size: 0.9rem;
   margin-bottom: 28px;
   display: block;
+}
+
+/* =========================================
+   DASHBOARD
+   ========================================= */
+.dashboard-container {
+  max-width: 1100px;
+}
+
+.dashboard-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  border-radius: 18px;
+  padding: 36px 40px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.25);
+}
+
+.dashboard-greeting {
+  color: #dbeafe;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.dashboard-hero-text h1 {
+  color: #ffffff;
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+  max-width: 520px;
+}
+
+.dashboard-subtitle {
+  color: #e0e7ff;
+  font-size: 0.92rem;
+  max-width: 480px;
+  margin-bottom: 22px;
+  line-height: 1.6;
+}
+
+.dashboard-hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-dashboard-primary,
+.btn-dashboard-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-dashboard-primary {
+  background: #ffffff;
+  color: #1e40af;
+}
+
+.btn-dashboard-primary:hover {
+  background: #eff6ff;
+  transform: translateY(-1px);
+}
+
+.btn-dashboard-secondary {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.btn-dashboard-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dashboard-hero-icon {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.8rem;
+  color: #ffffff;
+}
+
+/* STATS */
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.dashboard-stat-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dashboard-stat-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+}
+
+.dashboard-stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.stat-blue {
+  background: #eff6ff;
+  color: #2563eb;
+}
+.stat-green {
+  background: #ecfdf5;
+  color: #059669;
+}
+.stat-amber {
+  background: #fffbeb;
+  color: #d97706;
+}
+.stat-purple {
+  background: #f5f3ff;
+  color: #7c3aed;
+}
+
+.dashboard-stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-stat-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.dashboard-stat-label {
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+/* QUICK ACCESS BLOCKS */
+.dashboard-section-block {
+  margin-bottom: 30px;
+}
+
+.dashboard-block-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.dashboard-block-title i {
+  color: #2563eb;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.dashboard-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.dashboard-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 22px;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dashboard-card:hover {
+  transform: translateY(-3px);
+  border-color: #93c5fd;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.12);
+}
+
+.dashboard-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #eff6ff;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+}
+
+.dashboard-card-icon.icon-green {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.dashboard-card h3 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.dashboard-card p {
+  font-size: 0.83rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dashboard-grid,
+  .dashboard-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dashboard-hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 28px;
+  }
+  .dashboard-hero-text h1,
+  .dashboard-subtitle {
+    max-width: 100%;
+  }
+  .dashboard-hero-actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .dashboard-stats,
+  .dashboard-grid,
+  .dashboard-grid-3 {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-hero-icon {
+    display: none;
+  }
 }
 
 /* =========================================
@@ -1393,12 +1868,12 @@ body.sidebar-collapsed .main-content {
 }
 
 .profile-pic {
-  width: 130px;
-  height: 130px;
+  width: 150px;
+  height: 150px;
   border-radius: 20px;
   object-fit: cover;
-  border: 2px solid #ff8c00;
-  box-shadow: 0 0 30px rgba(255, 140, 0, 0.3);
+  border: linear-gradient(135deg, #2563eb, #1e40af);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4);
   background: linear-gradient(135deg, #111827 #1f2937);
   transition:
     transform 0.3s ease,
